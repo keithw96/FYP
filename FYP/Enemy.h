@@ -27,7 +27,7 @@ private:
 	Animation* m_animation;
 
 	bool m_faceRight;
-	bool m_moveUp;
+	bool m_moveRight;
 	bool m_alive;
 
 	float m_speed;

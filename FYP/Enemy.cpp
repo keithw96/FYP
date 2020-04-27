@@ -21,7 +21,8 @@ Enemy::Enemy(std::string path, sf::Vector2f pos, int leftDestination, int rightD
 	m_leftDestination = leftDestination;
 	m_rightDestination = rightDestination;
 
-	m_faceRight = false;
+	m_faceRight = true;
+	m_moveRight = false;
 	m_alive = true;
 
 	m_row = 0;
@@ -42,14 +43,14 @@ Enemy::~Enemy()
 /// <param name="dt"></param>
 void Enemy::update(float dt)
 {
-	if (m_shape.getPosition().x > m_rightDestination && m_faceRight)
+	if (m_shape.getPosition().x > m_rightDestination && m_moveRight)
 	{
-		m_faceRight = false;
+		m_moveRight = false;
 		m_speed *= -1;
 	}
-	else if (m_shape.getPosition().x < m_leftDestination && !m_faceRight)
+	else if (m_shape.getPosition().x < m_leftDestination && !m_moveRight)
 	{
-		m_faceRight = true;
+		m_moveRight = true;
 		m_speed *= -1;
 	}
 	
