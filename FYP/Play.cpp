@@ -41,7 +41,7 @@ void Play::init()
 	m_underWorld = false;
 	m_castle = false;
 	m_currentWorld = 1;
-	m_currentZone = 1;
+	m_currentZone = 2;
 	m_lives = 3;
 	m_score = 0;
 	m_coinCount = 0;
@@ -111,7 +111,7 @@ void Play::initLevel()
 	}
 	m_bgMusic.setBuffer(m_bgMusicBuffer);
 	m_bgMusic.setLoop(true);
-	m_bgMusic.play();
+	//m_bgMusic.play();
 
 	m_background.setPosition(sf::Vector2f(0.0f, -16.0f));
 	m_background.setSize(sf::Vector2f(6688, 512));
@@ -544,13 +544,13 @@ void Play::loadNextLevel()
 		m_underWorld = true;
 		initLevel();
 	}
-	else if (m_currentWorld == 1 && m_currentZone == 2)
+	else if (m_currentWorld == 1 && m_currentZone == 3)
 	{
 		m_underWorld = false;
 		m_overWorld = true;
 		initLevel();
 	}
-	else if (m_currentWorld == 1 && m_currentZone == 3)
+	else if (m_currentWorld == 1 && m_currentZone == 4)
 	{
 		m_overWorld = false;
 		m_castle = true;
@@ -657,5 +657,49 @@ void Play::initNonTileMapEntities()
 		m_pipes.push_back(pipe5);
 		Pipe* pipe6 = new Pipe("./Resources/Sprites/LevelPipe.png", sf::Vector2f(5662, 370), sf::Vector2f(64, 64));
 		m_pipes.push_back(pipe6);
+	}
+	if (m_currentWorld == 1 && m_currentZone == 2)
+	{
+		Enemy* enemy = new Enemy("./Resources/Sprites/UnderworldGoomba.png", sf::Vector2f(457, 384), 32, 544);
+		m_enemies.push_back(enemy);
+		Enemy* enemy2 = new Enemy("./Resources/Sprites/UnderworldGoomba.png", sf::Vector2f(507, 384), 32, 544);
+		m_enemies.push_back(enemy2);
+		Enemy* enemy3 = new Enemy("./Resources/Sprites/UnderworldGoomba.png", sf::Vector2f(958, 384), 928, 992);
+		m_enemies.push_back(enemy3);
+		Enemy* enemy4 = new Enemy("./Resources/Sprites/UnderworldGoomba.png", sf::Vector2f(1377, 384), 1187, 1537);
+		m_enemies.push_back(enemy4);
+		Enemy* enemy5 = new Enemy("./Resources/Sprites/UnderworldGoomba.png", sf::Vector2f(1472, 384), 1187, 1537);
+		m_enemies.push_back(enemy5);
+		Enemy* enemy6 = new Enemy("./Resources/Sprites/UnderworldGoomba.png", sf::Vector2f(1405, 192), 1345, 1440);
+		m_enemies.push_back(enemy6);
+		Enemy* enemy7 = new Enemy("./Resources/Sprites/UnderworldGoomba.png", sf::Vector2f(1919, 384), 1824, 2094);
+		m_enemies.push_back(enemy7);
+		Enemy* enemy8 = new Enemy("./Resources/Sprites/UnderworldGoomba.png", sf::Vector2f(1984, 384), 1824, 2094);
+		m_enemies.push_back(enemy8);
+		Enemy* enemy9 = new Enemy("./Resources/Sprites/UnderworldGoomba.png", sf::Vector2f(2367, 384), 2177, 2562);
+		m_enemies.push_back(enemy9);
+		Enemy* enemy10 = new Enemy("./Resources/Sprites/UnderworldGoomba.png", sf::Vector2f(2517, 256), 2467, 2562);
+		m_enemies.push_back(enemy10);
+		Enemy* enemy11 = new Enemy("./Resources/Sprites/UnderworldGoomba.png", sf::Vector2f(2850, 384), 2655, 3087);
+		m_enemies.push_back(enemy11);															  
+		Enemy* enemy12 = new Enemy("./Resources/Sprites/UnderworldGoomba.png", sf::Vector2f(2900, 384), 2655, 3087);
+		m_enemies.push_back(enemy12);															  
+		Enemy* enemy13 = new Enemy("./Resources/Sprites/UnderworldGoomba.png", sf::Vector2f(2960, 384), 2655, 3087);
+		m_enemies.push_back(enemy13);
+		Enemy* enemy14 = new Enemy("./Resources/Sprites/UnderworldGoomba.png", sf::Vector2f(3485, 384), 3405, 3566);
+		m_enemies.push_back(enemy14);
+		Enemy* enemy15 = new Enemy("./Resources/Sprites/UnderworldGoomba.png", sf::Vector2f(4131, 384), 4066, 4256);
+		m_enemies.push_back(enemy15);
+		Enemy* enemy16 = new Enemy("./Resources/Sprites/UnderworldGoomba.png", sf::Vector2f(4186, 384), 4066, 4256);
+		m_enemies.push_back(enemy16);
+		Enemy* enemy17 = new Enemy("./Resources/Sprites/UnderworldGoomba.png", sf::Vector2f(4811, 384), 4706, 4926);
+		m_enemies.push_back(enemy17);
+
+		Pipe* pipe = new Pipe("./Resources/Sprites/LevelPipe.png", sf::Vector2f(3614, 370), sf::Vector2f(64, 64));
+		m_pipes.push_back(pipe);
+		Pipe* pipe2 = new Pipe("./Resources/Sprites/LevelPipe.png", sf::Vector2f(3357, 336), sf::Vector2f(64, 128));
+		m_pipes.push_back(pipe2);
+		Pipe* pipe3 = new Pipe("./Resources/Sprites/LevelPipe.png", sf::Vector2f(3135, 352), sf::Vector2f(64, 96));
+		m_pipes.push_back(pipe3);
 	}
 }
