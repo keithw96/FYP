@@ -41,7 +41,7 @@ void Play::init()
 	m_underWorld = false;
 	m_castle = false;
 	m_currentWorld = 1;
-	m_currentZone = 1;
+	m_currentZone = 4;
 	m_lives = 3;
 	m_score = 0;
 	m_coinCount = 0;
@@ -78,7 +78,7 @@ void Play::initLevel()
 
 	m_renderRectangle.setPosition(m_view.getCenter());
 	m_renderRectangle.setSize(m_view.getSize());
-	m_renderRectangle.setFillColor(sf::Color::Green);
+
 	if (m_overWorld)
 	{
 		m_background.setFillColor(sf::Color(135, 206, 235, 255));
@@ -109,7 +109,7 @@ void Play::initLevel()
 	}
 	m_bgMusic.setBuffer(m_bgMusicBuffer);
 	m_bgMusic.setLoop(true);
-	//m_bgMusic.play();
+	m_bgMusic.play();
 
 	m_background.setPosition(sf::Vector2f(0.0f, -16.0f));
 	m_background.setSize(sf::Vector2f(6688, 512));
@@ -144,7 +144,7 @@ void Play::initLevel()
 			}
 			else if (mapArray[arrayIndex] == 3)
 			{
-				Tile* platform = new Tile("./Resources/Sprites/SpentBlock.png", sf::Vector2f(32 * i, 32 * j));
+				Tile* platform = new Tile("./Resources/Sprites/OverworldSpentBlock.png", sf::Vector2f(32 * i, 32 * j));
 				m_tiles.push_back(platform);
 			}
 			else if (mapArray[arrayIndex] == 4)
@@ -156,8 +156,7 @@ void Play::initLevel()
 			{
 				QuestionBlock* questionBlock = new QuestionBlock("./Resources/Sprites/OverworldQuestionBlock.png", "./Resources/Sprites/OverworldSpentBlock.png", sf::Vector2f(32 * i, 32 * j));
 				m_questionBlocks.push_back(questionBlock);
-				/*Tile* platform = new Tile("./Resources/Sprites/MysteryBlock.png", sf::Vector2f(32 * i, 32 * j));
-				m_tiles.push_back(platform);*/
+				
 			}
 			else if (mapArray[arrayIndex] == 6)
 			{
@@ -173,8 +172,7 @@ void Play::initLevel()
 			{
 				QuestionBlock* questionBlock = new QuestionBlock("./Resources/Sprites/UndergroundQuestionBlock.png", "./Resources/Sprites/UndergroundSpentBlock.png", sf::Vector2f(32 * i, 32 * j));
 				m_questionBlocks.push_back(questionBlock);
-				/*Tile* platform = new Tile("./Resources/Sprites/UndergroundMysteryBlock.png", sf::Vector2f(32 * i, 32 * j));
-				m_tiles.push_back(platform);*/
+		
 			}
 			else if (mapArray[arrayIndex] == 10)
 			{
@@ -229,13 +227,30 @@ void Play::initLevel()
 			}
 			else if (mapArray[arrayIndex] == 19)
 			{
-				Tile* platform = new Tile("./Resources/Sprites/LavaTop.png", sf::Vector2f(32 * i, 32 * j));
-				m_tiles.push_back(platform);
+				/*Tile* platform = new Tile("./Resources/Sprites/LavaTop.png", sf::Vector2f(32 * i, 32 * j));
+				m_tiles.push_back(platform);*/
+				sf::Texture* tex = new sf::Texture;
+				sf::Sprite* sprite = new sf::Sprite;
+				tex->loadFromFile("./Resources/Sprites/LavaTop.png");
+				sprite->setTexture(*tex);
+				m_textures.push_back(tex);
+				sprite->setPosition(sf::Vector2f(32 * i, 32 * j));
+				sprite->setOrigin(sprite->getTextureRect().width / 2, sprite->getTextureRect().height / 2);
+				m_sprites.push_back(sprite);
 			}
 			else if (mapArray[arrayIndex] == 20)
 			{
-				Tile* platform = new Tile("./Resources/Sprites/Lava.png", sf::Vector2f(32 * i, 32 * j));
-				m_tiles.push_back(platform);
+				/*Tile* platform = new Tile("./Resources/Sprites/Lava.png", sf::Vector2f(32 * i, 32 * j));
+				m_tiles.push_back(platform);*/		
+				sf::Texture* tex = new sf::Texture;
+				sf::Sprite* sprite = new sf::Sprite;
+				tex->loadFromFile("./Resources/Sprites/Lava.png");
+				sprite->setTexture(*tex);
+				m_textures.push_back(tex);
+				sprite->setPosition(sf::Vector2f(32 * i, 32 * j));
+				sprite->setOrigin(sprite->getTextureRect().width / 2, sprite->getTextureRect().height / 2);
+				m_sprites.push_back(sprite);
+
 			}
 			else if (mapArray[arrayIndex] == 21)
 			{
@@ -379,7 +394,7 @@ void Play::pollEvent(sf::Event& event, sf::RenderWindow& window)
 /// <param name="window"></param>
 void Play::update(float dt, GameStates& gameState, sf::RenderWindow& window)
 {
-	m_player->update(dt, m_tiles, m_coins, m_enemies, m_pipes, m_movingPlatforms, m_questionBlocks, m_goal, m_score, m_coinCount);
+	m_player->update(dt, m_tiles, m_coins, m_enemies, m_pipes, m_movingPlatforms, m_questionBlocks, m_goal, m_score, m_coinCount, m_renderRectangle);
 	m_coinTxt->update(dt);
 	if (!m_player->getAlive())
 	{
@@ -387,6 +402,12 @@ void Play::update(float dt, GameStates& gameState, sf::RenderWindow& window)
 		m_deathSound.play();
 		killEverything();
 		initLevel();
+		m_lives--;
+	}
+
+	if (m_lives <= 0)
+	{
+		window.close();
 	}
 
 	for (int i = 0; i < m_coins.size(); i++)
@@ -446,10 +467,7 @@ void Play::update(float dt, GameStates& gameState, sf::RenderWindow& window)
 		}
 	}
 
-	if (!m_bonusRound)
-	{
-		setView();
-	}
+	
 	m_renderRectangle.setPosition(m_view.getCenter().x - (m_view.getSize().x) / 2, 0);
 }
 
@@ -459,6 +477,10 @@ void Play::update(float dt, GameStates& gameState, sf::RenderWindow& window)
 /// <param name="window"></param>
 void Play::render(sf::RenderWindow& window)
 {
+	if (!m_bonusRound)
+	{
+		setView();
+	}
 	window.setView(m_view);
 	window.draw(m_background);
 

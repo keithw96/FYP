@@ -79,13 +79,14 @@ void Player::init(sf::Vector2f pos)
 /// <param name="platforms"></param>
 /// <param name="coins"></param>
 /// <param name="spikes"></param>
-void Player::update(float dt, std::vector<Tile*> platforms, std::vector<Coin*> coins,std::vector<Enemy*> enemies, std::vector<Pipe*> pipes, std::vector<MovingPlatform*> movingPlatforms, std::vector<QuestionBlock*> questionBlocks , Goal *goal, int &score, int& coinCount)
+void Player::update(float dt, std::vector<Tile*> platforms, std::vector<Coin*> coins,std::vector<Enemy*> enemies, std::vector<Pipe*> pipes, std::vector<MovingPlatform*> movingPlatforms, 
+					std::vector<QuestionBlock*> questionBlocks , Goal *goal, int &score, int& coinCount, sf::RectangleShape &renderRectangle)
 {
 	if (m_alive)
 	{
 		m_velocity.x = 0.0f;
 		
-		std::cout << m_shape.getPosition().x << ", " << m_shape.getPosition().y << std::endl;
+	//	std::cout << m_shape.getPosition().x << ", " << m_shape.getPosition().y << std::endl;
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) && m_shape.getPosition().x > 0)
 		{
@@ -125,12 +126,12 @@ void Player::update(float dt, std::vector<Tile*> platforms, std::vector<Coin*> c
 		m_shape.setTextureRect(m_animation->m_uvRect);
 
 		m_shape.move(m_velocity);
-		PlatformCollision(platforms);
+		PlatformCollision(platforms, renderRectangle);
 		coinCollision(coins, score, coinCount);
-		enemyCollision(enemies, score);
-		pipeCollision(pipes);
-		movingPlatformCollision(movingPlatforms);
-		questionBlockCollision(questionBlocks, score, coinCount);
+		enemyCollision(enemies, score, renderRectangle);
+		pipeCollision(pipes, renderRectangle);
+		movingPlatformCollision(movingPlatforms, renderRectangle);
+		questionBlockCollision(questionBlocks, score, coinCount, renderRectangle);
 
 		if (m_shape.getPosition().y > m_deathHeight)
 		{
@@ -166,50 +167,53 @@ void Player::draw(sf::RenderWindow &window)
 /// 9 - (5 + 5) = -1
 /// </summary>
 /// <param name="tiles"></param>
-void Player::PlatformCollision(std::vector<Tile*> tiles)
+void Player::PlatformCollision(std::vector<Tile*> tiles, sf::RectangleShape& renderRectangle)
 {
 	for (auto t : tiles)
 	{
-		sf::Vector2f otherPosition = t->getPos();
-		sf::Vector2f otherHalfSize = t->getHalfSize();
-		sf::Vector2f thisPosition = getPosition();
-		sf::Vector2f thisHalfSize = getHalfSize();
-		
-		//Distance between player and platform
-		float deltaX = otherPosition.x - thisPosition.x;
-		float deltaY = otherPosition.y - thisPosition.y;
-
-							//Always make delta positive
-		float interSectX = abs(deltaX) - (otherHalfSize.x + thisHalfSize.x);
-		float interSectY = abs(deltaY) - (otherHalfSize.y + thisHalfSize.y);
-
-		if (interSectX < 0.0f && interSectY < 0.0f)
+		if (t->getShape().getGlobalBounds().intersects(renderRectangle.getGlobalBounds()))
 		{
-			if (interSectX > interSectY)
-			{
-				m_velocity.x = 0;
-				if (deltaX > 0.0f)
-				{
-					m_shape.move(interSectX, 0.0f);
-				}
-				else
-				{
-					m_shape.move(-interSectX, 0.0f);
-				}
-			}
-			else
-			{
-				m_velocity.y = 0;
-				if (deltaY > 0.0f)
-				{
-					m_shape.move(0.0f, interSectY);
+			sf::Vector2f otherPosition = t->getPos();
+			sf::Vector2f otherHalfSize = t->getHalfSize();
+			sf::Vector2f thisPosition = getPosition();
+			sf::Vector2f thisHalfSize = getHalfSize();
 
-					m_canJump = true;
-					m_jumpCount = 0;
+			//Distance between player and platform
+			float deltaX = otherPosition.x - thisPosition.x;
+			float deltaY = otherPosition.y - thisPosition.y;
+
+			//Always make delta positive
+			float interSectX = abs(deltaX) - (otherHalfSize.x + thisHalfSize.x);
+			float interSectY = abs(deltaY) - (otherHalfSize.y + thisHalfSize.y);
+
+			if (interSectX < 0.0f && interSectY < 0.0f)
+			{
+				if (interSectX > interSectY)
+				{
+					m_velocity.x = 0;
+					if (deltaX > 0.0f)
+					{
+						m_shape.move(interSectX, 0.0f);
+					}
+					else
+					{
+						m_shape.move(-interSectX, 0.0f);
+					}
 				}
 				else
 				{
-					m_shape.move(0.0f, -interSectY);
+					m_velocity.y = 0;
+					if (deltaY > 0.0f)
+					{
+						m_shape.move(0.0f, interSectY);
+
+						m_canJump = true;
+						m_jumpCount = 0;
+					}
+					else
+					{
+						m_shape.move(0.0f, -interSectY);
+					}
 				}
 			}
 		}
@@ -239,48 +243,51 @@ void Player::coinCollision(std::vector<Coin*> coins, int &score, int& coinCount)
 /// Kill them if top collision is detected and kill the player if left right or bottom collision is detected
 /// </summary>
 /// <param name="enemies"></param>
-void Player::enemyCollision(std::vector<Enemy*> enemies, int &score)
+void Player::enemyCollision(std::vector<Enemy*> enemies, int &score, sf::RectangleShape& renderRectangle)
 {
 	for (auto e : enemies)
 	{
-		sf::Vector2f otherPosition = e->getPos();
-		sf::Vector2f otherHalfSize = e->getHalfSize();
-		sf::Vector2f thisPosition = getPosition();
-		sf::Vector2f thisHalfSize = getHalfSize();
-
-		float deltaX = otherPosition.x - thisPosition.x;
-		float deltaY = otherPosition.y - thisPosition.y;
-
-		float interSectX = abs(deltaX) - (otherHalfSize.x + thisHalfSize.x);
-		float interSectY = abs(deltaY) - (otherHalfSize.y + thisHalfSize.y);
-
-		if (interSectX < 0.0f && interSectY < 0.0f)
+		if (e->getShape().getGlobalBounds().intersects(renderRectangle.getGlobalBounds()))
 		{
-			if (interSectX > interSectY)
+			sf::Vector2f otherPosition = e->getPos();
+			sf::Vector2f otherHalfSize = e->getHalfSize();
+			sf::Vector2f thisPosition = getPosition();
+			sf::Vector2f thisHalfSize = getHalfSize();
+
+			float deltaX = otherPosition.x - thisPosition.x;
+			float deltaY = otherPosition.y - thisPosition.y;
+
+			float interSectX = abs(deltaX) - (otherHalfSize.x + thisHalfSize.x);
+			float interSectY = abs(deltaY) - (otherHalfSize.y + thisHalfSize.y);
+
+			if (interSectX < 0.0f && interSectY < 0.0f)
 			{
-				m_velocity.x = 0;
-				if (deltaX > 0.0f)
+				if (interSectX > interSectY)
 				{
-					m_alive = false;
+					m_velocity.x = 0;
+					if (deltaX > 0.0f)
+					{
+						m_alive = false;
+					}
+					else
+					{
+						m_alive = false;
+					}
 				}
 				else
 				{
-					m_alive = false;
-				}
-			}
-			else
-			{
-				if (deltaY > 0.0f)
-				{
-					m_velocity.y = 0;
-					m_velocity.y -= m_jumpAccelaration * 0.66f;
-					e->kill();
-					m_stompSound.play();
-					score += 100;
-				}
-				else
-				{
-					m_alive = false;
+					if (deltaY > 0.0f)
+					{
+						m_velocity.y = 0;
+						m_velocity.y -= m_jumpAccelaration * 0.66f;
+						e->kill();
+						m_stompSound.play();
+						score += 100;
+					}
+					else
+					{
+						m_alive = false;
+					}
 				}
 			}
 		}
@@ -291,48 +298,51 @@ void Player::enemyCollision(std::vector<Enemy*> enemies, int &score)
 /// Uses AABB collision to check for collision between the player and the pipes
 /// </summary>
 /// <param name="pipes"></param>
-void Player::pipeCollision(std::vector<Pipe*> pipes)
+void Player::pipeCollision(std::vector<Pipe*> pipes, sf::RectangleShape& renderRectangle)
 {
 	for (auto p : pipes)
 	{
-		sf::Vector2f otherPosition = p->getPos();
-		sf::Vector2f otherHalfSize = p->getHalfSize();
-		sf::Vector2f thisPosition = getPosition();
-		sf::Vector2f thisHalfSize = getHalfSize();
-
-		float deltaX = otherPosition.x - thisPosition.x;
-		float deltaY = otherPosition.y - thisPosition.y;
-
-		float interSectX = abs(deltaX) - (otherHalfSize.x + thisHalfSize.x);
-		float interSectY = abs(deltaY) - (otherHalfSize.y + thisHalfSize.y);
-
-		if (interSectX < 0.0f && interSectY < 0.0f)
+		if (p->getShape().getGlobalBounds().intersects(renderRectangle.getGlobalBounds()))
 		{
-			if (interSectX > interSectY)
-			{
-				m_velocity.x = 0;
-				if (deltaX > 0.0f)
-				{
-					m_shape.move(interSectX, 0.0f);
-				}
-				else
-				{
-					m_shape.move(-interSectX, 0.0f);
-				}
-			}
-			else
-			{
-				m_velocity.y = 0;
-				if (deltaY > 0.0f)
-				{
-					m_shape.move(0.0f, interSectY);
+			sf::Vector2f otherPosition = p->getPos();
+			sf::Vector2f otherHalfSize = p->getHalfSize();
+			sf::Vector2f thisPosition = getPosition();
+			sf::Vector2f thisHalfSize = getHalfSize();
 
-					m_canJump = true;
-					m_jumpCount = 0;
+			float deltaX = otherPosition.x - thisPosition.x;
+			float deltaY = otherPosition.y - thisPosition.y;
+
+			float interSectX = abs(deltaX) - (otherHalfSize.x + thisHalfSize.x);
+			float interSectY = abs(deltaY) - (otherHalfSize.y + thisHalfSize.y);
+
+			if (interSectX < 0.0f && interSectY < 0.0f)
+			{
+				if (interSectX > interSectY)
+				{
+					m_velocity.x = 0;
+					if (deltaX > 0.0f)
+					{
+						m_shape.move(interSectX, 0.0f);
+					}
+					else
+					{
+						m_shape.move(-interSectX, 0.0f);
+					}
 				}
 				else
 				{
-					m_shape.move(0.0f, -interSectY);
+					m_velocity.y = 0;
+					if (deltaY > 0.0f)
+					{
+						m_shape.move(0.0f, interSectY);
+
+						m_canJump = true;
+						m_jumpCount = 0;
+					}
+					else
+					{
+						m_shape.move(0.0f, -interSectY);
+					}
 				}
 			}
 		}
@@ -343,7 +353,7 @@ void Player::pipeCollision(std::vector<Pipe*> pipes)
 /// Uses AABB collision for the moving platforms
 /// </summary>
 /// <param name="movingPlatforms"></param>
-void Player::movingPlatformCollision(std::vector<MovingPlatform*> movingPlatforms)
+void Player::movingPlatformCollision(std::vector<MovingPlatform*> movingPlatforms, sf::RectangleShape& renderRectangle)
 {
 	for (auto mp : movingPlatforms)
 	{
@@ -397,60 +407,63 @@ void Player::movingPlatformCollision(std::vector<MovingPlatform*> movingPlatform
 /// <param name="questionBlocks"></param>
 /// <param name="score"></param>
 /// <param name="coinCount"></param>
-void Player::questionBlockCollision(std::vector<QuestionBlock*> questionBlocks, int& score, int& coinCount)
+void Player::questionBlockCollision(std::vector<QuestionBlock*> questionBlocks, int& score, int& coinCount, sf::RectangleShape& renderRectangle)
 {
 	for (auto q : questionBlocks)
 	{
-		sf::Vector2f otherPosition = q->getPos();
-		sf::Vector2f otherHalfSize = q->getHalfSize();
-		sf::Vector2f thisPosition = getPosition();
-		sf::Vector2f thisHalfSize = getHalfSize();
-
-		float deltaX = otherPosition.x - thisPosition.x;
-		float deltaY = otherPosition.y - thisPosition.y;
-
-		float interSectX = abs(deltaX) - (otherHalfSize.x + thisHalfSize.x);
-		float interSectY = abs(deltaY) - (otherHalfSize.y + thisHalfSize.y);
-
-		if (interSectX < 0.0f && interSectY < 0.0f)
+		if (q->getShape().getGlobalBounds().intersects(renderRectangle.getGlobalBounds()))
 		{
-			if (interSectX > interSectY)
+			sf::Vector2f otherPosition = q->getPos();
+			sf::Vector2f otherHalfSize = q->getHalfSize();
+			sf::Vector2f thisPosition = getPosition();
+			sf::Vector2f thisHalfSize = getHalfSize();
+
+			float deltaX = otherPosition.x - thisPosition.x;
+			float deltaY = otherPosition.y - thisPosition.y;
+
+			float interSectX = abs(deltaX) - (otherHalfSize.x + thisHalfSize.x);
+			float interSectY = abs(deltaY) - (otherHalfSize.y + thisHalfSize.y);
+
+			if (interSectX < 0.0f && interSectY < 0.0f)
 			{
-				m_velocity.x = 0;
-				if (deltaX > 0.0f)
+				if (interSectX > interSectY)
 				{
-					m_shape.move(interSectX, 0.0f);
+					m_velocity.x = 0;
+					if (deltaX > 0.0f)
+					{
+						m_shape.move(interSectX, 0.0f);
+					}
+					else
+					{
+						m_shape.move(-interSectX, 0.0f);
+					}
 				}
 				else
 				{
-					m_shape.move(-interSectX, 0.0f);
-				}
-			}
-			else
-			{
-				m_velocity.y = 0;
-				if (deltaY > 0.0f)
-				{
-					m_shape.move(0.0f, interSectY);
-
-					m_canJump = true;
-					m_jumpCount = 0;
-				}
-				else
-				{
-					if (!q->getSpent() && q->getHasCoin())
+					m_velocity.y = 0;
+					if (deltaY > 0.0f)
 					{
-						coinCount++;
-						score += 200;
-						m_coinSound.play();
-					}
-					else if (!q->getSpent() && !q->getHasCoin())
-					{
-						m_1upSound.play();
-					}
-					q->hit();
+						m_shape.move(0.0f, interSectY);
 
-					m_shape.move(0.0f, -interSectY);
+						m_canJump = true;
+						m_jumpCount = 0;
+					}
+					else
+					{
+						if (!q->getSpent() && q->getHasCoin())
+						{
+							coinCount++;
+							score += 200;
+							m_coinSound.play();
+						}
+						else if (!q->getSpent() && !q->getHasCoin())
+						{
+							m_1upSound.play();
+						}
+						q->hit();
+
+						m_shape.move(0.0f, -interSectY);
+					}
 				}
 			}
 		}

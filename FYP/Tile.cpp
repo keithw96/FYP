@@ -9,7 +9,7 @@ Tile::Tile(std::string filePath, sf::Vector2f pos)
 {
 	if (!m_texture.loadFromFile(filePath))
 	{
-		std::cout << "Failed to load player sprite" << std::endl;
+		std::cout << "Failed to load " << filePath << std::endl;
 	}
 	m_shape.setTexture(&m_texture);
 	m_shape.setSize(sf::Vector2f(32,32));
