@@ -57,6 +57,10 @@ private:
 	Coin* m_coinTxt;
 	sf::Text m_worldTxt;
 	sf::Text m_timeTxt;
+	sf::Text m_livesTxt;
+	sf::Sprite m_livesSprite;
+	sf::Texture m_livesTexture;
+
 	sf::Time m_time;
 
 	sf::SoundBuffer m_bgMusicBuffer;

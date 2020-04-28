@@ -21,7 +21,7 @@ public:
 
 	void init(sf::Vector2f pos);
 	void update(float dt, std::vector<Tile*> tiles, std::vector<Coin*> coins, std::vector<Enemy*> enemies, std::vector<Pipe*> pipes, std::vector<MovingPlatform*> movingPlatforms,
-				std::vector<QuestionBlock*> questionBlocks, Goal* goal, int& score, int& coinCount, sf::RectangleShape& renderRectangle);
+				std::vector<QuestionBlock*> questionBlocks, Goal* goal, int& score, int& coinCount, int& livesCount, sf::RectangleShape& renderRectangle);
 	void draw(sf::RenderWindow& window);
 	
 	void PlatformCollision(std::vector<Tile*> platforms, sf::RectangleShape& renderRectangle);
@@ -29,7 +29,7 @@ public:
 	void enemyCollision(std::vector<Enemy*> enemies, int& score, sf::RectangleShape& renderRectangle);
 	void pipeCollision(std::vector<Pipe*> pipes, sf::RectangleShape& renderRectangle);
 	void movingPlatformCollision(std::vector<MovingPlatform*> movingPlatforms, sf::RectangleShape& renderRectangle);
-	void questionBlockCollision(std::vector<QuestionBlock*> questionBlocks, int& score, int& coinCount, sf::RectangleShape& renderRectangle);
+	void questionBlockCollision(std::vector<QuestionBlock*> questionBlocks, int& score, int& coinCount, int& livesCount, sf::RectangleShape& renderRectangle);
 
 	sf::Vector2f getPosition();
 	sf::Vector2f getHalfSize();

@@ -80,7 +80,7 @@ void Player::init(sf::Vector2f pos)
 /// <param name="coins"></param>
 /// <param name="spikes"></param>
 void Player::update(float dt, std::vector<Tile*> platforms, std::vector<Coin*> coins,std::vector<Enemy*> enemies, std::vector<Pipe*> pipes, std::vector<MovingPlatform*> movingPlatforms, 
-					std::vector<QuestionBlock*> questionBlocks , Goal *goal, int &score, int& coinCount, sf::RectangleShape &renderRectangle)
+					std::vector<QuestionBlock*> questionBlocks , Goal *goal, int &score, int& coinCount, int& livesCount, sf::RectangleShape &renderRectangle)
 {
 	if (m_alive)
 	{
@@ -131,7 +131,7 @@ void Player::update(float dt, std::vector<Tile*> platforms, std::vector<Coin*> c
 		enemyCollision(enemies, score, renderRectangle);
 		pipeCollision(pipes, renderRectangle);
 		movingPlatformCollision(movingPlatforms, renderRectangle);
-		questionBlockCollision(questionBlocks, score, coinCount, renderRectangle);
+		questionBlockCollision(questionBlocks, score, coinCount, livesCount, renderRectangle);
 
 		if (m_shape.getPosition().y > m_deathHeight)
 		{
@@ -407,7 +407,7 @@ void Player::movingPlatformCollision(std::vector<MovingPlatform*> movingPlatform
 /// <param name="questionBlocks"></param>
 /// <param name="score"></param>
 /// <param name="coinCount"></param>
-void Player::questionBlockCollision(std::vector<QuestionBlock*> questionBlocks, int& score, int& coinCount, sf::RectangleShape& renderRectangle)
+void Player::questionBlockCollision(std::vector<QuestionBlock*> questionBlocks, int& score, int& coinCount, int& livesCount, sf::RectangleShape& renderRectangle)
 {
 	for (auto q : questionBlocks)
 	{
@@ -459,6 +459,7 @@ void Player::questionBlockCollision(std::vector<QuestionBlock*> questionBlocks, 
 						else if (!q->getSpent() && !q->getHasCoin())
 						{
 							m_1upSound.play();
+							livesCount++;
 						}
 						q->hit();
 

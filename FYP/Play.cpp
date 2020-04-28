@@ -41,7 +41,7 @@ void Play::init()
 	m_underWorld = false;
 	m_castle = false;
 	m_currentWorld = 1;
-	m_currentZone = 3;
+	m_currentZone = 1;
 	m_lives = 3;
 	m_score = 0;
 	m_coinCount = 0;
@@ -57,6 +57,12 @@ void Play::init()
 	m_worldTxt.setFont(m_font);
 	m_worldTxt.setString("WORLD \n" + std::to_string(m_currentWorld) + "-" + std::to_string(m_currentZone));
 	m_worldTxt.setCharacterSize(12);
+
+	m_livesTexture.loadFromFile("./Resources/Sprites/LivesSprite.png");
+	m_livesSprite.setTexture(m_livesTexture);
+	m_livesTxt.setFont(m_font);
+	m_livesTxt.setString("x" + std::to_string(m_lives));
+	m_livesTxt.setCharacterSize(12);
 
 	m_noCoinsTxt.setFont(m_font);
 	m_noCoinsTxt.setString("x" );
@@ -390,7 +396,7 @@ void Play::pollEvent(sf::Event& event, sf::RenderWindow& window)
 /// <param name="window"></param>
 void Play::update(float dt, GameStates& gameState, sf::RenderWindow& window)
 {
-	m_player->update(dt, m_tiles, m_coins, m_enemies, m_pipes, m_movingPlatforms, m_questionBlocks, m_goal, m_score, m_coinCount, m_renderRectangle);
+	m_player->update(dt, m_tiles, m_coins, m_enemies, m_pipes, m_movingPlatforms, m_questionBlocks, m_goal, m_score, m_coinCount, m_lives, m_renderRectangle);
 	m_coinTxt->update(dt);
 	if (!m_player->getAlive())
 	{
@@ -404,6 +410,12 @@ void Play::update(float dt, GameStates& gameState, sf::RenderWindow& window)
 	if (m_lives <= 0)
 	{
 		window.close();
+	}
+
+	if (m_coinCount == 50)
+	{
+		m_coinCount -= 50;
+		m_lives++;
 	}
 
 	for (int i = 0; i < m_coins.size(); i++)
@@ -546,6 +558,13 @@ void Play::render(sf::RenderWindow& window)
 	m_scoreTxt.setString("MARIO \n" + std::to_string(m_score));
 	m_scoreTxt.setPosition(sf::Vector2f(m_view.getCenter().x - (m_view.getSize().x * 0.45), m_view.getCenter().y - m_view.getSize().y * 0.49));
 	window.draw(m_scoreTxt);
+
+	m_livesSprite.setPosition(sf::Vector2f(m_view.getCenter().x - (m_view.getSize().x * 0.25), m_view.getCenter().y - m_view.getSize().y * 0.49));
+	m_livesTxt.setString("x" + std::to_string(m_lives));
+	m_livesTxt.setPosition(sf::Vector2f(m_livesSprite.getPosition().x + 20, m_livesSprite.getPosition().y));
+	window.draw(m_livesSprite);
+	window.draw(m_livesTxt);
+
 
 	m_coinTxt->setPos(sf::Vector2f(m_view.getCenter().x - (m_view.getSize().x * 0.1), m_view.getCenter().y - m_view.getSize().y * 0.45));
 	m_noCoinsTxt.setPosition(sf::Vector2f(m_coinTxt->getPos().x + 10, m_coinTxt->getPos().y - 16));
