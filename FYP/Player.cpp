@@ -127,12 +127,12 @@ void Player::update(float dt, std::vector<Tile*> platforms, std::vector<Coin*> c
 		m_shape.setTextureRect(m_animation->m_uvRect);
 
 		m_shape.move(m_velocity);
+		questionBlockCollision(questionBlocks, score, coinCount, livesCount, renderRectangle);
 		PlatformCollision(platforms, renderRectangle);
 		coinCollision(coins, score, coinCount);
 		enemyCollision(enemies, score, renderRectangle);
 		pipeCollision(pipes, renderRectangle);
 		movingPlatformCollision(movingPlatforms, renderRectangle);
-		questionBlockCollision(questionBlocks, score, coinCount, livesCount, renderRectangle);
 
 		if (m_shape.getPosition().y > m_deathHeight)
 		{

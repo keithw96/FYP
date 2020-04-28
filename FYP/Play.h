@@ -28,7 +28,7 @@ public:
 	void pollEvent(sf::Event& event, sf::RenderWindow& window);
 	void update(float dt, GameStates& gameState, sf::RenderWindow& window);
 	void render(sf::RenderWindow& window);
-	void setView();
+	void setView(sf::RenderWindow &window);
 	void loadNextLevel();
 	void killEverything();
 private:
@@ -61,13 +61,14 @@ private:
 	sf::Sprite m_livesSprite;
 	sf::Texture m_livesTexture;
 
-	sf::Time m_time;
-
 	sf::SoundBuffer m_bgMusicBuffer;
 	sf::SoundBuffer m_deathSoundBuffer;
 
 	sf::Sound m_bgMusic;
 	sf::Sound m_deathSound;
+
+	int m_timeLeft;
+	sf::Clock m_timer;
 
 	Player* m_player;
 	Goal* m_goal;

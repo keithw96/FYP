@@ -47,25 +47,21 @@ void Play::init()
 	m_coinCount = 0;
 
 	m_scoreTxt.setFont(m_font);
-	m_scoreTxt.setString("MARIO \n" + std::to_string(m_score));
 	m_scoreTxt.setCharacterSize(12);
 
 	m_timeTxt.setFont(m_font);
-	m_timeTxt.setString("Time \n");
+	m_timeTxt.setCharacterSize(12);
 	m_scoreTxt.setCharacterSize(12);
 
 	m_worldTxt.setFont(m_font);
-	m_worldTxt.setString("WORLD \n" + std::to_string(m_currentWorld) + "-" + std::to_string(m_currentZone));
 	m_worldTxt.setCharacterSize(12);
 
 	m_livesTexture.loadFromFile("./Resources/Sprites/LivesSprite.png");
 	m_livesSprite.setTexture(m_livesTexture);
 	m_livesTxt.setFont(m_font);
-	m_livesTxt.setString("x" + std::to_string(m_lives));
 	m_livesTxt.setCharacterSize(12);
 
 	m_noCoinsTxt.setFont(m_font);
-	m_noCoinsTxt.setString("x" );
 	m_noCoinsTxt.setCharacterSize(12);
 	m_coinTxt = new Coin(sf::Vector2f(0, 0));
 	m_coinTxt->setSize(sf::Vector2f(16, 16));
@@ -81,6 +77,8 @@ void Play::initLevel()
 	m_view = sf::View(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(910.0f, 512.0f));
 
 	std::string enemyPath;
+
+	m_timeLeft = 400;
 
 	m_renderRectangle.setPosition(m_view.getCenter());
 	m_renderRectangle.setSize(m_view.getSize());
@@ -299,6 +297,8 @@ void Play::initLevel()
 		}
 	}
 	initNonTileMapEntities();
+
+	m_timer.restart();
 }
 
 
@@ -369,6 +369,8 @@ void Play::initBonusArea(int lvNum)
 			arrayIndex++;
 		}
 	}
+
+	m_timer.restart();
 }
 
 /// <summary>
@@ -397,8 +399,9 @@ void Play::pollEvent(sf::Event& event, sf::RenderWindow& window)
 void Play::update(float dt, GameStates& gameState, sf::RenderWindow& window)
 {
 	m_player->update(dt, m_tiles, m_coins, m_enemies, m_pipes, m_movingPlatforms, m_questionBlocks, m_goal, m_score, m_coinCount, m_lives, m_renderRectangle);
+
 	m_coinTxt->update(dt);
-	if (!m_player->getAlive())
+	if (!m_player->getAlive() || m_timeLeft <= 0)
 	{
 		m_bgMusic.stop();
 		m_deathSound.play();
@@ -448,6 +451,7 @@ void Play::update(float dt, GameStates& gameState, sf::RenderWindow& window)
 		if (!m_bonusRound)
 		{
 			m_score += 5000;
+			m_score += 100 * m_timeLeft;
 			int bonus = rand() % 5 + 1;
 			m_bonusRound = true;
 			killEverything();
@@ -469,8 +473,13 @@ void Play::update(float dt, GameStates& gameState, sf::RenderWindow& window)
 			loadNextLevel();
 		}
 	}
-
 	
+	if ((int)m_timer.getElapsedTime().asSeconds() == 1)
+	{
+		m_timeLeft--;
+		m_timer.restart();
+	}
+
 	m_renderRectangle.setPosition(m_view.getCenter().x - (m_view.getSize().x) / 2, 0);
 
 	if (m_lives <= 0)
@@ -478,6 +487,10 @@ void Play::update(float dt, GameStates& gameState, sf::RenderWindow& window)
 		gameState = GameStates::MainMenu;
 		killEverything();
 		m_bgMusic.stop();
+	}
+	if (!m_bonusRound)
+	{
+		setView(window);
 	}
 }
 
@@ -487,10 +500,6 @@ void Play::update(float dt, GameStates& gameState, sf::RenderWindow& window)
 /// <param name="window"></param>
 void Play::render(sf::RenderWindow& window)
 {
-	if (!m_bonusRound)
-	{
-		setView();
-	}
 	window.setView(m_view);
 	window.draw(m_background);
 
@@ -561,12 +570,15 @@ void Play::render(sf::RenderWindow& window)
 	m_scoreTxt.setPosition(sf::Vector2f(m_view.getCenter().x - (m_view.getSize().x * 0.45), m_view.getCenter().y - m_view.getSize().y * 0.49));
 	window.draw(m_scoreTxt);
 
+	m_timeTxt.setString("Time \n " + std::to_string(m_timeLeft));
+	m_timeTxt.setPosition(sf::Vector2f(m_view.getCenter().x + (m_view.getSize().x * 0.35), m_view.getCenter().y - m_view.getSize().y * 0.49));
+	window.draw(m_timeTxt);
+
 	m_livesSprite.setPosition(sf::Vector2f(m_view.getCenter().x - (m_view.getSize().x * 0.25), m_view.getCenter().y - m_view.getSize().y * 0.49));
 	m_livesTxt.setString("x" + std::to_string(m_lives));
 	m_livesTxt.setPosition(sf::Vector2f(m_livesSprite.getPosition().x + 20, m_livesSprite.getPosition().y));
 	window.draw(m_livesSprite);
 	window.draw(m_livesTxt);
-
 
 	m_coinTxt->setPos(sf::Vector2f(m_view.getCenter().x - (m_view.getSize().x * 0.1), m_view.getCenter().y - m_view.getSize().y * 0.45));
 	m_noCoinsTxt.setPosition(sf::Vector2f(m_coinTxt->getPos().x + 10, m_coinTxt->getPos().y - 16));
@@ -578,7 +590,7 @@ void Play::render(sf::RenderWindow& window)
 /// <summary>
 /// Set the View to center on the player but not go past level boundary
 /// </summary>
-void Play::setView()
+void Play::setView(sf::RenderWindow& window)
 {
 	sf::Vector2f playerpos = m_player->getPosition();
 	sf::Vector2f viewCenter = m_view.getCenter();
@@ -593,6 +605,8 @@ void Play::setView()
 	{
 		m_view.setCenter(playerpos.x, 240);
 	}
+
+	//window.setView(m_view);
 
 }
 /// <summary>
