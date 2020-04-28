@@ -5,7 +5,7 @@
 /// </summary>
 Play::Play()
 {
-	init();
+//	init();
 }
 
 /// <summary>
@@ -407,11 +407,6 @@ void Play::update(float dt, GameStates& gameState, sf::RenderWindow& window)
 		m_lives--;
 	}
 
-	if (m_lives <= 0)
-	{
-		window.close();
-	}
-
 	if (m_coinCount == 50)
 	{
 		m_coinCount -= 50;
@@ -477,6 +472,13 @@ void Play::update(float dt, GameStates& gameState, sf::RenderWindow& window)
 
 	
 	m_renderRectangle.setPosition(m_view.getCenter().x - (m_view.getSize().x) / 2, 0);
+
+	if (m_lives <= 0)
+	{
+		gameState = GameStates::MainMenu;
+		killEverything();
+		m_bgMusic.stop();
+	}
 }
 
 /// <summary>

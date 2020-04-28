@@ -47,6 +47,7 @@ void Player::init(sf::Vector2f pos)
 	}
 	m_stompSound.setBuffer(m_stompBuffer);
 	
+
 	if (!m_1upBuffer.loadFromFile("./Resources/Sounds/1Up.wav"))
 	{
 		std::cout << "Error Loading 1up sound" << std::endl;
@@ -86,7 +87,7 @@ void Player::update(float dt, std::vector<Tile*> platforms, std::vector<Coin*> c
 	{
 		m_velocity.x = 0.0f;
 		
-		std::cout << m_shape.getPosition().x << ", " << m_shape.getPosition().y << std::endl;
+		//std::cout << m_shape.getPosition().x << ", " << m_shape.getPosition().y << std::endl;
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) && m_shape.getPosition().x > 0)
 		{

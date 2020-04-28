@@ -28,7 +28,7 @@ void Game::init()
 	m_mainMenuScene = new MainMenuScene();
 	m_playScene = new Play();
 
-	m_currentGameState = GameStates::LevelOne;
+	m_currentGameState = GameStates::MainMenu;
 }
 
 /// <summary>
@@ -43,7 +43,7 @@ void Game::pollEvent()
 		switch (m_currentGameState)
 		{
 		case GameStates::MainMenu:
-			m_mainMenuScene->pollEvent(event, m_window, m_currentGameState);
+			m_mainMenuScene->pollEvent(event, m_window, m_currentGameState, m_playScene);
 			break;
 		case GameStates::LevelOne:
 			m_playScene->pollEvent(event, m_window);
@@ -73,7 +73,7 @@ void Game::update()
 		switch (m_currentGameState)
 		{
 		case GameStates::MainMenu:
-			m_mainMenuScene->update(m_currentGameState, m_window);
+			m_mainMenuScene->update(m_currentGameState, m_window, m_playScene);
 			break;
 		case GameStates::LevelOne:
 			m_playScene->update(deltaTime, m_currentGameState, m_window);
