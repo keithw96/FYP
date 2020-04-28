@@ -148,6 +148,7 @@
     <ClCompile Include="Goal.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenuScene.cpp" />
+    <ClCompile Include="MovingPlatform.cpp" />
     <ClCompile Include="Pipe.cpp" />
     <ClCompile Include="Play.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="Gamestates.h" />
     <ClInclude Include="Goal.h" />
     <ClInclude Include="MainMenuScene.h" />
+    <ClInclude Include="MovingPlatform.h" />
     <ClInclude Include="Pipe.h" />
     <ClInclude Include="Play.h" />
     <ClInclude Include="Player.h" />

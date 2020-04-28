@@ -9,6 +9,7 @@
 #include "Enemy.h"
 #include "Pipe.h"
 #include "Tile.h"
+#include "MovingPlatform.h"
 //#include "Gamestates.h"
 class Player
 {
@@ -18,12 +19,13 @@ public:
 	~Player();
 
 	void init(sf::Vector2f pos);
-	void update(float dt, std::vector<Tile*> tiles, std::vector<Coin*> coins, std::vector<Enemy*> enemies, std::vector<Pipe*> pipes, Goal* goal, int& score, int& coinCount);
+	void update(float dt, std::vector<Tile*> tiles, std::vector<Coin*> coins, std::vector<Enemy*> enemies, std::vector<Pipe*> pipes, std::vector<MovingPlatform*> movingPlatforms , Goal* goal, int& score, int& coinCount);
 	void draw(sf::RenderWindow& window);
 	void PlatformCollision(std::vector<Tile*> platforms);
 	void coinCollision(std::vector<Coin*> coins, int& score, int& coinCount);
 	void enemyCollision(std::vector<Enemy*> enemies, int &score);
 	void pipeCollision(std::vector<Pipe*> pipes);
+	void movingPlatformCollision(std::vector<MovingPlatform*> movingPlatforms);
 
 	sf::Vector2f getPosition();
 	sf::Vector2f getHalfSize();
@@ -59,6 +61,7 @@ private:
 	int m_jumpCount;
 	int m_row;
 	int m_coinCount;
+	int m_deathHeight;
 
 };
 

@@ -64,6 +64,7 @@ void Player::init(sf::Vector2f pos)
 	m_jumpAccelaration = 12;
 	m_speed = 5;
 	m_gravity = 15;
+	m_deathHeight = 544;
 }
 
 /// <summary>
@@ -73,7 +74,7 @@ void Player::init(sf::Vector2f pos)
 /// <param name="platforms"></param>
 /// <param name="coins"></param>
 /// <param name="spikes"></param>
-void Player::update(float dt, std::vector<Tile*> platforms, std::vector<Coin*> coins,std::vector<Enemy*> enemies, std::vector<Pipe*> pipes, Goal *goal, int &score, int& coinCount)
+void Player::update(float dt, std::vector<Tile*> platforms, std::vector<Coin*> coins,std::vector<Enemy*> enemies, std::vector<Pipe*> pipes, std::vector<MovingPlatform*> movingPlatforms , Goal *goal, int &score, int& coinCount)
 {
 	if (m_alive)
 	{
@@ -123,8 +124,8 @@ void Player::update(float dt, std::vector<Tile*> platforms, std::vector<Coin*> c
 		coinCollision(coins, score, coinCount);
 		enemyCollision(enemies, score);
 		pipeCollision(pipes);
-
-		if (m_shape.getPosition().y > 512)
+		movingPlatformCollision(movingPlatforms);
+		if (m_shape.getPosition().y > m_deathHeight)
 		{
 			m_alive = false;
 		}
@@ -279,6 +280,10 @@ void Player::enemyCollision(std::vector<Enemy*> enemies, int &score)
 	}
 }
 
+/// <summary>
+/// Uses AABB collision to check for collision between the player and the moving platforms
+/// </summary>
+/// <param name="pipes"></param>
 void Player::pipeCollision(std::vector<Pipe*> pipes)
 {
 	for (auto p : pipes)
@@ -321,6 +326,54 @@ void Player::pipeCollision(std::vector<Pipe*> pipes)
 				else
 				{
 					m_shape.move(0.0f, -interSectY);
+				}
+			}
+		}
+	}
+}
+
+void Player::movingPlatformCollision(std::vector<MovingPlatform*> movingPlatforms)
+{
+	for (auto mp : movingPlatforms)
+	{
+		sf::Vector2f otherPosition = mp->getPos();
+		sf::Vector2f otherHalfSize = mp->getHalfSize();
+		sf::Vector2f thisPosition = getPosition();
+		sf::Vector2f thisHalfSize = getHalfSize();
+
+		float deltaX = otherPosition.x - thisPosition.x;
+		float deltaY = otherPosition.y - thisPosition.y;
+
+		float interSectX = abs(deltaX) - (otherHalfSize.x + thisHalfSize.x);
+		float interSectY = abs(deltaY) - (otherHalfSize.y + thisHalfSize.y);
+
+		if (interSectX < 0.0f && interSectY < 0.0f)
+		{
+			if (interSectX > interSectY)
+			{
+				m_velocity.x = 0;
+				if (deltaX > 0.0f)
+				{
+					m_shape.move(interSectX, 0.0f);
+				}
+				else
+				{
+					m_shape.move(-interSectX, 0.0f);
+				}
+			}
+			else
+			{
+				m_velocity.y = 0;
+				if (deltaY > 0.0f)
+				{
+					m_shape.move(0.0f, interSectY);
+
+					m_canJump = true;
+					m_jumpCount = 0;
+				}
+				else
+				{
+					m_shape.move(0.0f, -interSectY * 10);
 				}
 			}
 		}

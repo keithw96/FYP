@@ -41,7 +41,7 @@ void Play::init()
 	m_underWorld = false;
 	m_castle = false;
 	m_currentWorld = 1;
-	m_currentZone = 2;
+	m_currentZone = 1;
 	m_lives = 3;
 	m_score = 0;
 	m_coinCount = 0;
@@ -63,14 +63,12 @@ void Play::init()
 	m_noCoinsTxt.setCharacterSize(12);
 	m_coinTxt = new Coin(sf::Vector2f(0, 0));
 	m_coinTxt->setSize(sf::Vector2f(16, 16));
-//	initBonusArea(1);
+
 	initLevel();
-	
 }
 
 /// <summary>
-/// Read in the tile map and add it to an array
-/// 
+/// Initialise the tile map, sound files, textures and variables
 /// </summary>
 void Play::initLevel()
 {
@@ -161,7 +159,7 @@ void Play::initLevel()
 			}
 			else if (mapArray[arrayIndex] == 6)
 			{
-				//m_player = new Player(sf::Vector2f(4185, 384));
+				//m_player = new Player(sf::Vector2f(4866, 224));
 				m_player = new Player(sf::Vector2f(32 * i, 32 * j));
 			}
 			else if (mapArray[arrayIndex] == 7)
@@ -377,7 +375,7 @@ void Play::pollEvent(sf::Event& event, sf::RenderWindow& window)
 /// <param name="window"></param>
 void Play::update(float dt, GameStates& gameState, sf::RenderWindow& window)
 {
-	m_player->update(dt, m_tiles, m_coins, m_enemies, m_pipes, m_goal, m_score, m_coinCount);
+	m_player->update(dt, m_tiles, m_coins, m_enemies, m_pipes, m_movingPlatforms, m_goal, m_score, m_coinCount);
 	m_coinTxt->update(dt);
 	if (!m_player->getAlive())
 	{
@@ -409,6 +407,11 @@ void Play::update(float dt, GameStates& gameState, sf::RenderWindow& window)
 			m_enemies.erase(m_enemies.begin() + i);
 			i--;
 		}
+	}
+
+	for (auto mp : m_movingPlatforms)
+	{
+		mp->update();
 	}
 
 	if (m_player->getShape().getGlobalBounds().intersects(m_goal->getShape().getGlobalBounds()))
@@ -493,6 +496,14 @@ void Play::render(sf::RenderWindow& window)
 		if (p->getShape().getGlobalBounds().intersects(m_renderRectangle.getGlobalBounds()))
 		{
 			p->draw(window);
+		}
+	}
+
+	for (auto mp : m_movingPlatforms)
+	{
+		if (mp->getShape().getGlobalBounds().intersects(m_renderRectangle.getGlobalBounds()))
+		{
+			mp->draw(window);
 		}
 	}
 
@@ -604,7 +615,13 @@ void Play::killEverything()
 		m_pipes.erase(m_pipes.begin() + i);
 		i--;
 	}
-
+	for (int i = 0; i < m_movingPlatforms.size(); i++)
+	{
+		m_movingPlatforms[i]->~MovingPlatform();
+		m_movingPlatforms[i] = nullptr;
+		m_movingPlatforms.erase(m_movingPlatforms.begin() + i);
+		i--;
+	}
 	m_player = nullptr;
 	m_goal = nullptr;
 }
@@ -701,5 +718,10 @@ void Play::initNonTileMapEntities()
 		m_pipes.push_back(pipe2);
 		Pipe* pipe3 = new Pipe("./Resources/Sprites/LevelPipe.png", sf::Vector2f(3135, 352), sf::Vector2f(64, 96));
 		m_pipes.push_back(pipe3);
+
+		MovingPlatform* movingPlatform1 = new MovingPlatform(sf::Vector2f(4563, 5), 0, 450);
+		m_movingPlatforms.push_back(movingPlatform1);
+		MovingPlatform* movingPlatform2 = new MovingPlatform(sf::Vector2f(5060, 445), 0, 450);
+		m_movingPlatforms.push_back(movingPlatform2);
 	}
 }

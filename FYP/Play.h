@@ -11,6 +11,7 @@
 #include "Enemy.h"
 #include "Pipe.h"
 #include "Tile.h"
+#include "MovingPlatform.h"
 class Play
 {
 public:
@@ -71,6 +72,7 @@ private:
 	std::vector<Coin*> m_coins;
 	std::vector<Enemy*> m_enemies;
 	std::vector<Pipe*> m_pipes;
+	std::vector<MovingPlatform*> m_movingPlatforms;
 	std::vector<sf::Sprite*> m_sprites;
 	std::vector<sf::Texture*> m_textures;
 };
