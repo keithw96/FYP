@@ -41,7 +41,7 @@ void Play::init()
 	m_underWorld = false;
 	m_castle = false;
 	m_currentWorld = 1;
-	m_currentZone = 4;
+	m_currentZone = 3;
 	m_lives = 3;
 	m_score = 0;
 	m_coinCount = 0;
@@ -160,7 +160,7 @@ void Play::initLevel()
 			}
 			else if (mapArray[arrayIndex] == 6)
 			{
-				//m_player = new Player(sf::Vector2f(4866, 224));
+				//m_player = new Player(sf::Vector2f(3297, 288));
 				m_player = new Player(sf::Vector2f(32 * i, 32 * j));
 			}
 			else if (mapArray[arrayIndex] == 7)
@@ -227,8 +227,6 @@ void Play::initLevel()
 			}
 			else if (mapArray[arrayIndex] == 19)
 			{
-				/*Tile* platform = new Tile("./Resources/Sprites/LavaTop.png", sf::Vector2f(32 * i, 32 * j));
-				m_tiles.push_back(platform);*/
 				sf::Texture* tex = new sf::Texture;
 				sf::Sprite* sprite = new sf::Sprite;
 				tex->loadFromFile("./Resources/Sprites/LavaTop.png");
@@ -239,9 +237,7 @@ void Play::initLevel()
 				m_sprites.push_back(sprite);
 			}
 			else if (mapArray[arrayIndex] == 20)
-			{
-				/*Tile* platform = new Tile("./Resources/Sprites/Lava.png", sf::Vector2f(32 * i, 32 * j));
-				m_tiles.push_back(platform);*/		
+			{	
 				sf::Texture* tex = new sf::Texture;
 				sf::Sprite* sprite = new sf::Sprite;
 				tex->loadFromFile("./Resources/Sprites/Lava.png");
@@ -765,5 +761,31 @@ void Play::initNonTileMapEntities()
 		m_movingPlatforms.push_back(movingPlatform1);
 		MovingPlatform* movingPlatform2 = new MovingPlatform(sf::Vector2f(5060, 445), 0, 450);
 		m_movingPlatforms.push_back(movingPlatform2);
+	}
+	if (m_currentWorld == 1 && m_currentZone == 3)
+	{
+		Enemy* enemy = new Enemy("./Resources/Sprites/OverworldGoomba.png", sf::Vector2f(937, 128), 867, 992);
+		m_enemies.push_back(enemy);
+		Enemy* enemy2 = new Enemy("./Resources/Sprites/OverworldGoomba.png", sf::Vector2f(1412, 96), 1347, 1472);
+		m_enemies.push_back(enemy2);
+		Enemy* enemy3 = new Enemy("./Resources/Sprites/OverworldGoomba.png", sf::Vector2f(2546, 160), 2446, 2626);
+		m_enemies.push_back(enemy3);
+		Enemy* enemy4 = new Enemy("./Resources/Sprites/OverworldGoomba.png", sf::Vector2f(3448, 192), 3423, 3648);
+		m_enemies.push_back(enemy4);
+		Enemy* enemy5 = new Enemy("./Resources/Sprites/OverworldGoomba.png", sf::Vector2f(3583, 192), 3423, 3648);
+		m_enemies.push_back(enemy5);
+		Enemy* enemy6 = new Enemy("./Resources/Sprites/OverworldGoomba.png", sf::Vector2f(4083, 256), 4033, 4128);
+		m_enemies.push_back(enemy6);
+		Enemy* enemy7 = new Enemy("./Resources/Sprites/OverworldGoomba.png", sf::Vector2f(4418, 384), 4288, 4544);
+		m_enemies.push_back(enemy7);
+
+		MovingPlatform* movingPlatform1 = new MovingPlatform(sf::Vector2f(1802, 105), 100, 400);
+		m_movingPlatforms.push_back(movingPlatform1);
+		MovingPlatform* movingPlatform2 = new MovingPlatform(sf::Vector2f(2826, 200), 100, 400);
+		m_movingPlatforms.push_back(movingPlatform2);
+		MovingPlatform* movingPlatform3 = new MovingPlatform(sf::Vector2f(3026, 300), 100, 400);
+		m_movingPlatforms.push_back(movingPlatform3);
+		MovingPlatform* movingPlatform4 = new MovingPlatform(sf::Vector2f(4278, 300), 100, 350);
+		m_movingPlatforms.push_back(movingPlatform4);
 	}
 }

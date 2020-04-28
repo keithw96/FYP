@@ -86,7 +86,7 @@ void Player::update(float dt, std::vector<Tile*> platforms, std::vector<Coin*> c
 	{
 		m_velocity.x = 0.0f;
 		
-	//	std::cout << m_shape.getPosition().x << ", " << m_shape.getPosition().y << std::endl;
+		std::cout << m_shape.getPosition().x << ", " << m_shape.getPosition().y << std::endl;
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) && m_shape.getPosition().x > 0)
 		{
