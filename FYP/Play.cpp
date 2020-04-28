@@ -134,28 +134,30 @@ void Play::initLevel()
 		{
 			if (mapArray[arrayIndex] == 1)
 			{
-				Tile* platform = new Tile("./Resources/Sprites/Ground.png", sf::Vector2f(32, 32), sf::Vector2f(32 * i, 32 * j));
+				Tile* platform = new Tile("./Resources/Sprites/Ground.png", sf::Vector2f(32 * i, 32 * j));
 				m_tiles.push_back(platform);
 			}
 			else if (mapArray[arrayIndex] == 2)
 			{
-				Tile* platform = new Tile("./Resources/Sprites/Platform.png", sf::Vector2f(32, 32), sf::Vector2f(32 * i, 32 * j));
+				Tile* platform = new Tile("./Resources/Sprites/Platform.png", sf::Vector2f(32 * i, 32 * j));
 				m_tiles.push_back(platform);
 			}
 			else if (mapArray[arrayIndex] == 3)
 			{
-				Tile* platform = new Tile("./Resources/Sprites/SpentBlock.png", sf::Vector2f(32, 32), sf::Vector2f(32 * i, 32 * j));
+				Tile* platform = new Tile("./Resources/Sprites/SpentBlock.png", sf::Vector2f(32 * i, 32 * j));
 				m_tiles.push_back(platform);
 			}
 			else if (mapArray[arrayIndex] == 4)
 			{
-				Tile* platform = new Tile("./Resources/Sprites/StaircaseBlock.png", sf::Vector2f(32, 32), sf::Vector2f(32 * i, 32 * j));
+				Tile* platform = new Tile("./Resources/Sprites/StaircaseBlock.png", sf::Vector2f(32 * i, 32 * j));
 				m_tiles.push_back(platform);
 			}
 			else if (mapArray[arrayIndex] == 5)
 			{
-				Tile* platform = new Tile("./Resources/Sprites/MysteryBlock.png", sf::Vector2f(32, 32), sf::Vector2f(32 * i, 32 * j));
-				m_tiles.push_back(platform);
+				QuestionBlock* questionBlock = new QuestionBlock("./Resources/Sprites/OverworldQuestionBlock.png", "./Resources/Sprites/OverworldSpentBlock.png", sf::Vector2f(32 * i, 32 * j));
+				m_questionBlocks.push_back(questionBlock);
+				/*Tile* platform = new Tile("./Resources/Sprites/MysteryBlock.png", sf::Vector2f(32 * i, 32 * j));
+				m_tiles.push_back(platform);*/
 			}
 			else if (mapArray[arrayIndex] == 6)
 			{
@@ -164,22 +166,24 @@ void Play::initLevel()
 			}
 			else if (mapArray[arrayIndex] == 7)
 			{
-				Tile* platform = new Tile("./Resources/Sprites/UndergroundStaircaseBlock.png", sf::Vector2f(32, 32), sf::Vector2f(32 * i, 32 * j));
+				Tile* platform = new Tile("./Resources/Sprites/UndergroundStaircaseBlock.png", sf::Vector2f(32 * i, 32 * j));
 				m_tiles.push_back(platform);
 			}
 			else if (mapArray[arrayIndex] == 9)
 			{
-				Tile* platform = new Tile("./Resources/Sprites/UndergroundMysteryBlock.png", sf::Vector2f(32, 32), sf::Vector2f(32 * i, 32 * j));
-				m_tiles.push_back(platform);
+				QuestionBlock* questionBlock = new QuestionBlock("./Resources/Sprites/UndergroundQuestionBlock.png", "./Resources/Sprites/UndergroundSpentBlock.png", sf::Vector2f(32 * i, 32 * j));
+				m_questionBlocks.push_back(questionBlock);
+				/*Tile* platform = new Tile("./Resources/Sprites/UndergroundMysteryBlock.png", sf::Vector2f(32 * i, 32 * j));
+				m_tiles.push_back(platform);*/
 			}
 			else if (mapArray[arrayIndex] == 10)
 			{
-				Tile* platform = new Tile("./Resources/Sprites/UndergroundPlatformBlock.png", sf::Vector2f(32, 32), sf::Vector2f(32 * i, 32 * j));
+				Tile* platform = new Tile("./Resources/Sprites/UndergroundPlatformBlock.png", sf::Vector2f(32 * i, 32 * j));
 				m_tiles.push_back(platform);
 			}
 			else if (mapArray[arrayIndex] == 11)
 			{
-				Tile* platform = new Tile("./Resources/Sprites/UndergroundGroundBlock.png", sf::Vector2f(32, 32), sf::Vector2f(32 * i, 32 * j));
+				Tile* platform = new Tile("./Resources/Sprites/UndergroundGroundBlock.png", sf::Vector2f(32 * i, 32 * j));
 				m_tiles.push_back(platform);
 			}
 			else if (mapArray[arrayIndex] == 12)
@@ -189,7 +193,7 @@ void Play::initLevel()
 			}
 			else if (mapArray[arrayIndex] == 13)
 			{
-				Tile* platform = new Tile("./Resources/Sprites/PipeVertical.png", sf::Vector2f(32, 32), sf::Vector2f(32 * i, 32 * j));
+				Tile* platform = new Tile("./Resources/Sprites/PipeVertical.png", sf::Vector2f(32 * i, 32 * j));
 				m_tiles.push_back(platform);
 			}
 			else if (mapArray[arrayIndex] == 14)
@@ -205,32 +209,32 @@ void Play::initLevel()
 			}
 			else if (mapArray[arrayIndex] == 15)
 			{
-				Tile* platform = new Tile("./Resources/Sprites/TreeTop.png", sf::Vector2f(32, 32), sf::Vector2f(32 * i, 32 * j));
+				Tile* platform = new Tile("./Resources/Sprites/TreeTop.png", sf::Vector2f(32 * i, 32 * j));
 				m_tiles.push_back(platform);
 			}
 			else if (mapArray[arrayIndex] == 16)
 			{
-				Tile* platform = new Tile("./Resources/Sprites/CastleTile.png", sf::Vector2f(32, 32), sf::Vector2f(32 * i, 32 * j));
+				Tile* platform = new Tile("./Resources/Sprites/CastleTile.png", sf::Vector2f(32 * i, 32 * j));
 				m_tiles.push_back(platform);
 			}
 			else if (mapArray[arrayIndex] == 17)
 			{
-				Tile* platform = new Tile("./Resources/Sprites/CastleBridge.png", sf::Vector2f(32, 32), sf::Vector2f(32 * i, 32 * j));
+				Tile* platform = new Tile("./Resources/Sprites/CastleBridge.png", sf::Vector2f(32 * i, 32 * j));
 				m_tiles.push_back(platform);
 			}
 			else if (mapArray[arrayIndex] == 18)
 			{
-				Tile* platform = new Tile("./Resources/Sprites/CastleSpentBlock.png", sf::Vector2f(32, 32), sf::Vector2f(32 * i, 32 * j));
+				Tile* platform = new Tile("./Resources/Sprites/CastleSpentBlock.png", sf::Vector2f(32 * i, 32 * j));
 				m_tiles.push_back(platform);
 			}
 			else if (mapArray[arrayIndex] == 19)
 			{
-				Tile* platform = new Tile("./Resources/Sprites/LavaTop.png", sf::Vector2f(32, 32), sf::Vector2f(32 * i, 32 * j));
+				Tile* platform = new Tile("./Resources/Sprites/LavaTop.png", sf::Vector2f(32 * i, 32 * j));
 				m_tiles.push_back(platform);
 			}
 			else if (mapArray[arrayIndex] == 20)
 			{
-				Tile* platform = new Tile("./Resources/Sprites/Lava.png", sf::Vector2f(32, 32), sf::Vector2f(32 * i, 32 * j));
+				Tile* platform = new Tile("./Resources/Sprites/Lava.png", sf::Vector2f(32 * i, 32 * j));
 				m_tiles.push_back(platform);
 			}
 			else if (mapArray[arrayIndex] == 21)
@@ -323,12 +327,12 @@ void Play::initBonusArea(int lvNum)
 			}
 			else if (mapArray[arrayIndex] == 10)
 			{
-				Tile* platform = new Tile("./Resources/Sprites/UndergroundPlatformBlock.png", sf::Vector2f(32, 32), sf::Vector2f(32 * i, 32 * j));
+				Tile* platform = new Tile("./Resources/Sprites/UndergroundPlatformBlock.png", sf::Vector2f(32 * i, 32 * j));
 				m_tiles.push_back(platform);
 			}
 			else if (mapArray[arrayIndex] == 11)
 			{
-				Tile* platform = new Tile("./Resources/Sprites/UndergroundGroundBlock.png", sf::Vector2f(32, 32), sf::Vector2f(32 * i, 32 * j));
+				Tile* platform = new Tile("./Resources/Sprites/UndergroundGroundBlock.png", sf::Vector2f(32 * i, 32 * j));
 				m_tiles.push_back(platform);
 			}
 			else if (mapArray[arrayIndex] == 12)
@@ -338,7 +342,7 @@ void Play::initBonusArea(int lvNum)
 			}
 			else if (mapArray[arrayIndex] == 13)
 			{
-				Tile* platform = new Tile("./Resources/Sprites/PipeVertical.png", sf::Vector2f(32, 32), sf::Vector2f(32 * i, 32 * j));
+				Tile* platform = new Tile("./Resources/Sprites/PipeVertical.png", sf::Vector2f(32 * i, 32 * j));
 				m_tiles.push_back(platform);
 			}
 			else if (mapArray[arrayIndex] == 22)
@@ -375,7 +379,7 @@ void Play::pollEvent(sf::Event& event, sf::RenderWindow& window)
 /// <param name="window"></param>
 void Play::update(float dt, GameStates& gameState, sf::RenderWindow& window)
 {
-	m_player->update(dt, m_tiles, m_coins, m_enemies, m_pipes, m_movingPlatforms, m_goal, m_score, m_coinCount);
+	m_player->update(dt, m_tiles, m_coins, m_enemies, m_pipes, m_movingPlatforms, m_questionBlocks, m_goal, m_score, m_coinCount);
 	m_coinTxt->update(dt);
 	if (!m_player->getAlive())
 	{
@@ -480,6 +484,14 @@ void Play::render(sf::RenderWindow& window)
 		if (c->getShape().getGlobalBounds().intersects(m_renderRectangle.getGlobalBounds()))
 		{
 			c->draw(window);
+		}
+	}
+	
+	for (auto q : m_questionBlocks)
+	{
+		if (q->getShape().getGlobalBounds().intersects(m_renderRectangle.getGlobalBounds()))
+		{
+			q->draw(window);
 		}
 	}
 
@@ -620,6 +632,14 @@ void Play::killEverything()
 		m_movingPlatforms[i]->~MovingPlatform();
 		m_movingPlatforms[i] = nullptr;
 		m_movingPlatforms.erase(m_movingPlatforms.begin() + i);
+		i--;
+	}
+
+	for (int i = 0; i < m_questionBlocks.size(); i++)
+	{
+		m_questionBlocks[i]->~QuestionBlock();
+		m_questionBlocks[i] = nullptr;
+		m_questionBlocks.erase(m_questionBlocks.begin() + i);
 		i--;
 	}
 	m_player = nullptr;

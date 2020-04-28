@@ -6,7 +6,7 @@
 class Tile
 {
 public:
-	Tile(std::string filePath, sf::Vector2f size, sf::Vector2f pos);
+	Tile(std::string filePath, sf::Vector2f pos);
 	~Tile();
 
 	void draw(sf::RenderWindow& window);

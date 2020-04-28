@@ -10,6 +10,7 @@
 #include "Pipe.h"
 #include "Tile.h"
 #include "MovingPlatform.h"
+#include "QuestionBlock.h"
 //#include "Gamestates.h"
 class Player
 {
@@ -19,13 +20,15 @@ public:
 	~Player();
 
 	void init(sf::Vector2f pos);
-	void update(float dt, std::vector<Tile*> tiles, std::vector<Coin*> coins, std::vector<Enemy*> enemies, std::vector<Pipe*> pipes, std::vector<MovingPlatform*> movingPlatforms , Goal* goal, int& score, int& coinCount);
+	void update(float dt, std::vector<Tile*> tiles, std::vector<Coin*> coins, std::vector<Enemy*> enemies, std::vector<Pipe*> pipes, std::vector<MovingPlatform*> movingPlatforms, std::vector<QuestionBlock*> questionBlocks, Goal* goal, int& score, int& coinCount);
 	void draw(sf::RenderWindow& window);
+	
 	void PlatformCollision(std::vector<Tile*> platforms);
 	void coinCollision(std::vector<Coin*> coins, int& score, int& coinCount);
-	void enemyCollision(std::vector<Enemy*> enemies, int &score);
+	void enemyCollision(std::vector<Enemy*> enemies, int& score);
 	void pipeCollision(std::vector<Pipe*> pipes);
 	void movingPlatformCollision(std::vector<MovingPlatform*> movingPlatforms);
+	void questionBlockCollision(std::vector<QuestionBlock*> questionBlocks, int& score, int& coinCount);
 
 	sf::Vector2f getPosition();
 	sf::Vector2f getHalfSize();
@@ -38,10 +41,12 @@ private:
 	sf::SoundBuffer m_jumpBuffer;
 	sf::SoundBuffer m_coinBuffer;
 	sf::SoundBuffer m_stompBuffer;
+	sf::SoundBuffer m_1upBuffer;
 
 	sf::Sound m_coinSound;
 	sf::Sound m_jumpSound;
 	sf::Sound m_stompSound;
+	sf::Sound m_1upSound;
 
 	sf::Vector2f m_velocity;
 	sf::Vector2f m_direction;
@@ -60,7 +65,6 @@ private:
 
 	int m_jumpCount;
 	int m_row;
-	int m_coinCount;
 	int m_deathHeight;
 
 };

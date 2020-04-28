@@ -57,11 +57,19 @@ sf::RectangleShape Coin::getShape()
 	return m_shape;
 }
 
+/// <summary>
+/// Returns the m_alive boolean
+/// </summary>
+/// <returns></returns>
 bool Coin::getAlive()
 {
 	return m_alive;
 }
 
+/// <summary>
+/// Returns the shapes position
+/// </summary>
+/// <returns></returns>
 sf::Vector2f Coin::getPos()
 {
 	return m_shape.getPosition();
@@ -84,6 +92,10 @@ void Coin::setPos(sf::Vector2f pos)
 	m_shape.setPosition(pos);
 }
 
+/// <summary>
+/// Sets the coins size to the passed vector
+/// </summary>
+/// <param name="size"></param>
 void Coin::setSize(sf::Vector2f size)
 {
 	m_shape.setSize(size);

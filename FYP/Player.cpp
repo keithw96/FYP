@@ -47,6 +47,11 @@ void Player::init(sf::Vector2f pos)
 	}
 	m_stompSound.setBuffer(m_stompBuffer);
 	
+	if (!m_1upBuffer.loadFromFile("./Resources/Sounds/1Up.wav"))
+	{
+		std::cout << "Error Loading 1up sound" << std::endl;
+	}
+	m_1upSound.setBuffer(m_1upBuffer);
 
 	m_animation = new Animation(&m_texture, sf::Vector2u(3, 3), 0.2f);
 
@@ -74,7 +79,7 @@ void Player::init(sf::Vector2f pos)
 /// <param name="platforms"></param>
 /// <param name="coins"></param>
 /// <param name="spikes"></param>
-void Player::update(float dt, std::vector<Tile*> platforms, std::vector<Coin*> coins,std::vector<Enemy*> enemies, std::vector<Pipe*> pipes, std::vector<MovingPlatform*> movingPlatforms , Goal *goal, int &score, int& coinCount)
+void Player::update(float dt, std::vector<Tile*> platforms, std::vector<Coin*> coins,std::vector<Enemy*> enemies, std::vector<Pipe*> pipes, std::vector<MovingPlatform*> movingPlatforms, std::vector<QuestionBlock*> questionBlocks , Goal *goal, int &score, int& coinCount)
 {
 	if (m_alive)
 	{
@@ -125,6 +130,8 @@ void Player::update(float dt, std::vector<Tile*> platforms, std::vector<Coin*> c
 		enemyCollision(enemies, score);
 		pipeCollision(pipes);
 		movingPlatformCollision(movingPlatforms);
+		questionBlockCollision(questionBlocks, score, coinCount);
+
 		if (m_shape.getPosition().y > m_deathHeight)
 		{
 			m_alive = false;
@@ -281,7 +288,7 @@ void Player::enemyCollision(std::vector<Enemy*> enemies, int &score)
 }
 
 /// <summary>
-/// Uses AABB collision to check for collision between the player and the moving platforms
+/// Uses AABB collision to check for collision between the player and the pipes
 /// </summary>
 /// <param name="pipes"></param>
 void Player::pipeCollision(std::vector<Pipe*> pipes)
@@ -332,6 +339,10 @@ void Player::pipeCollision(std::vector<Pipe*> pipes)
 	}
 }
 
+/// <summary>
+/// Uses AABB collision for the moving platforms
+/// </summary>
+/// <param name="movingPlatforms"></param>
 void Player::movingPlatformCollision(std::vector<MovingPlatform*> movingPlatforms)
 {
 	for (auto mp : movingPlatforms)
@@ -374,6 +385,72 @@ void Player::movingPlatformCollision(std::vector<MovingPlatform*> movingPlatform
 				else
 				{
 					m_shape.move(0.0f, -interSectY * 10);
+				}
+			}
+		}
+	}
+}
+
+/// <summary>
+/// AABB collison for the question blocks
+/// </summary>
+/// <param name="questionBlocks"></param>
+/// <param name="score"></param>
+/// <param name="coinCount"></param>
+void Player::questionBlockCollision(std::vector<QuestionBlock*> questionBlocks, int& score, int& coinCount)
+{
+	for (auto q : questionBlocks)
+	{
+		sf::Vector2f otherPosition = q->getPos();
+		sf::Vector2f otherHalfSize = q->getHalfSize();
+		sf::Vector2f thisPosition = getPosition();
+		sf::Vector2f thisHalfSize = getHalfSize();
+
+		float deltaX = otherPosition.x - thisPosition.x;
+		float deltaY = otherPosition.y - thisPosition.y;
+
+		float interSectX = abs(deltaX) - (otherHalfSize.x + thisHalfSize.x);
+		float interSectY = abs(deltaY) - (otherHalfSize.y + thisHalfSize.y);
+
+		if (interSectX < 0.0f && interSectY < 0.0f)
+		{
+			if (interSectX > interSectY)
+			{
+				m_velocity.x = 0;
+				if (deltaX > 0.0f)
+				{
+					m_shape.move(interSectX, 0.0f);
+				}
+				else
+				{
+					m_shape.move(-interSectX, 0.0f);
+				}
+			}
+			else
+			{
+				m_velocity.y = 0;
+				if (deltaY > 0.0f)
+				{
+					m_shape.move(0.0f, interSectY);
+
+					m_canJump = true;
+					m_jumpCount = 0;
+				}
+				else
+				{
+					if (!q->getSpent() && q->getHasCoin())
+					{
+						coinCount++;
+						score += 200;
+						m_coinSound.play();
+					}
+					else if (!q->getSpent() && !q->getHasCoin())
+					{
+						m_1upSound.play();
+					}
+					q->hit();
+
+					m_shape.move(0.0f, -interSectY);
 				}
 			}
 		}
