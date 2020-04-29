@@ -1,0 +1,3 @@
+/home/pi/projects/FYP/FYP/Build/CMakeFiles/rebuild_cache.dir
+/home/pi/projects/FYP/FYP/Build/CMakeFiles/FYP.dir
+/home/pi/projects/FYP/FYP/Build/CMakeFiles/edit_cache.dir
