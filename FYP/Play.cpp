@@ -46,7 +46,7 @@ void Play::init()
 	m_underWorld = false;
 	m_castle = false;
 	m_currentWorld = 1;
-	m_currentZone = 4;
+	m_currentZone = 1;
 	m_lives = 3;
 	m_score = 0;
 	m_coinCount = 0;
@@ -70,8 +70,6 @@ void Play::init()
 	m_noCoinsTxt.setCharacterSize(12);
 	m_coinTxt = new Coin(sf::Vector2f(0, 0));
 	m_coinTxt->setSize(sf::Vector2f(16, 16));
-
-//	initLevel();
 }
 
 /// <summary>
@@ -84,9 +82,6 @@ void Play::initLevel()
 	std::string enemyPath;
 
 	m_timeLeft = 400;
-
-	m_renderRectangle.setPosition(m_view.getCenter());
-	m_renderRectangle.setSize(m_view.getSize());
 
 	if (m_overWorld)
 	{
@@ -116,6 +111,10 @@ void Play::initLevel()
 		m_background.setFillColor(sf::Color::Black);
 		enemyPath = "Resources/Sprites/CastleGoomba.png";
 	}
+
+	m_renderRectangle.setPosition(m_view.getCenter());
+	m_renderRectangle.setSize(m_view.getSize());
+
 	m_bgMusic.setBuffer(m_bgMusicBuffer);
 	m_bgMusic.setLoop(true);
 	m_bgMusic.play();
@@ -169,7 +168,7 @@ void Play::initLevel()
 			}
 			else if (mapArray[arrayIndex] == 6)
 			{
-				//m_player = new Player(sf::Vector2f(3297, 288));
+				//m_player = new Player(sf::Vector2f(2055, 384));
 				m_player = new Player(sf::Vector2f(32 * i, 32 * j));
 			}
 			else if (mapArray[arrayIndex] == 7)
@@ -301,12 +300,17 @@ void Play::initLevel()
 			arrayIndex++;
 		}
 	}
+
+	
 	initNonTileMapEntities();
 
 	m_timer.restart();
 }
 
-
+/// <summary>
+/// Initialise the bonus level
+/// </summary>
+/// <param name="lvNum"></param>
 void Play::initBonusArea(int lvNum)
 {
 	m_view = sf::View(sf::Vector2f(240.0f, 192.0f), sf::Vector2f(512.0f, 352.0f));
@@ -414,15 +418,7 @@ void Play::update(float dt, GameStates& gameState, sf::RenderWindow& window)
 		m_player->update(dt, m_tiles, m_coins, m_enemies, m_pipes, m_movingPlatforms, m_questionBlocks, m_goal, m_score, m_coinCount, m_lives, m_renderRectangle);
 
 		m_coinTxt->update(dt);
-		if (!m_player->getAlive() || m_timeLeft <= 0)
-		{
-			m_bgMusic.stop();
-			m_deathSound.play();
-			killEverything();
-			m_lives--;
-			m_timer.restart();
-			m_currentPlayState = PlayState::LOADING;
-		}
+		
 
 		for (int i = 0; i < m_coins.size(); i++)
 		{
@@ -453,6 +449,20 @@ void Play::update(float dt, GameStates& gameState, sf::RenderWindow& window)
 			mp->update();
 		}
 
+		if ((float)m_timer.getElapsedTime().asSeconds() >= 0.4)
+		{
+			m_timeLeft--;
+			m_timer.restart();
+		}
+
+		m_renderRectangle.setPosition(m_view.getCenter().x - (m_view.getSize().x) / 2, 0);
+
+	
+		if (!m_bonusRound)
+		{
+			setView(window);
+		}
+
 		if (m_player->getShape().getGlobalBounds().intersects(m_goal->getShape().getGlobalBounds()))
 		{
 
@@ -478,24 +488,32 @@ void Play::update(float dt, GameStates& gameState, sf::RenderWindow& window)
 					m_currentZone = 1;
 				}
 				killEverything();
-				m_currentPlayState = PlayState::LOADING;
+
+				if (m_currentWorld == 2 && m_currentZone == 4)
+				{
+					m_bgMusic.stop();
+					gameState = GameStates::MainMenu;
+				}
+				else
+				{
+
+					m_currentPlayState = PlayState::LOADING;
+				}
 			}
 		}
 
-		if ((float)m_timer.getElapsedTime().asSeconds() >= 0.4)
+		if (m_player != nullptr)
 		{
-			m_timeLeft--;
-			m_timer.restart();
+			if (!m_player->getAlive() || m_timeLeft <= 0)
+			{
+				m_bgMusic.stop();
+				m_deathSound.play();
+				killEverything();
+				m_lives--;
+				m_timer.restart();
+				m_currentPlayState = PlayState::LOADING;
+			}
 		}
-
-		m_renderRectangle.setPosition(m_view.getCenter().x - (m_view.getSize().x) / 2, 0);
-
-	
-		if (!m_bonusRound)
-		{
-			setView(window);
-		}
-
 		if (m_lives <= 0)
 		{
 			m_currentPlayState = PlayState::GAMEOVER;
@@ -504,21 +522,18 @@ void Play::update(float dt, GameStates& gameState, sf::RenderWindow& window)
 		}
 		break;
 
-	case PlayState::LOADING:
-		m_view = sf::View(sf::Vector2f(445.0f, 256.0f), sf::Vector2f(910.0f, 512.0f));
+	case PlayState::LOADING:	
+		m_view = sf::View(sf::Vector2f(445.0f, 256.0f), sf::Vector2f(640.0f, 448.0f));
 		m_background.setPosition(sf::Vector2f(0.0f, -16.0f));
 		m_background.setSize(sf::Vector2f(910.0f, 512));
 		m_background.setFillColor(sf::Color::Black);
 
-		//std::cout << (int)m_timer.getElapsedTime().asSeconds() << std::endl;
-
-		//render(window);
-		initLevel();
+		loadNextLevel();
 		m_currentPlayState = PlayState::GAME;
-		
+
 		break;
 	case PlayState::GAMEOVER:
-		m_view = sf::View(sf::Vector2f(445.0f, 256.0f), sf::Vector2f(910.0f, 512.0f));
+		m_view = sf::View(sf::Vector2f(445.0f, 256.0f), sf::Vector2f(640.0f, 448.0f));
 		m_background.setPosition(sf::Vector2f(0.0f, -16.0f));
 		m_background.setSize(sf::Vector2f(910.0f, 512));
 		m_background.setFillColor(sf::Color::Black);
@@ -658,30 +673,61 @@ void Play::setView(sf::RenderWindow& window)
 	{
 		m_view.setCenter(playerpos.x, 240);
 	}
-
-	//window.setView(m_view);
-
 }
 /// <summary>
+/// Sets up the next levels background and
 /// Loads the next level
 /// </summary>
 void Play::loadNextLevel()
 {
+	if (m_currentWorld == 1 && m_currentZone == 1)
+	{
+		m_overWorld = true;
+		m_underWorld = false;
+		m_castle = false;
+		initLevel();
+	}
 	if (m_currentWorld == 1 && m_currentZone == 2)
 	{
 		m_overWorld = false;
 		m_underWorld = true;
+		m_castle = false;
 		initLevel();
 	}
 	else if (m_currentWorld == 1 && m_currentZone == 3)
 	{
 		m_underWorld = false;
 		m_overWorld = true;
+		m_castle = false;
 		initLevel();
 	}
 	else if (m_currentWorld == 1 && m_currentZone == 4)
 	{
 		m_overWorld = false;
+		m_underWorld = false;
+		m_castle = true;
+		initLevel();
+	}
+	else if (m_currentWorld == 2 && m_currentZone == 1)
+	{
+		m_overWorld = true;
+		m_underWorld = false;
+		m_castle = false;
+		initLevel();
+	}
+
+	else if (m_currentWorld == 2 && m_currentZone == 2)
+	{
+		m_overWorld = true;
+		m_underWorld = false;
+		m_castle = false;
+		initLevel();
+	}
+
+	else if (m_currentWorld == 2 && m_currentZone == 3)
+	{
+		m_overWorld = false;
+		m_underWorld = false;
 		m_castle = true;
 		initLevel();
 	}
@@ -876,4 +922,119 @@ void Play::initNonTileMapEntities()
 		MovingPlatform* movingPlatform4 = new MovingPlatform(sf::Vector2f(4278, 300), 100, 350);
 		m_movingPlatforms.push_back(movingPlatform4);
 	}
+
+	if (m_currentWorld == 1 && m_currentZone == 4)
+	{
+		Enemy* enemy = new Enemy("Resources/Sprites/CastleGoomba.png", sf::Vector2f(459, 256), 194, 514);
+		m_enemies.push_back(enemy);
+		Enemy* enemy2 = new Enemy("Resources/Sprites/CastleGoomba.png", sf::Vector2f(1251, 384), 1056, 1446);
+		m_enemies.push_back(enemy2);
+		Enemy* enemy3 = new Enemy("Resources/Sprites/CastleGoomba.png", sf::Vector2f(1711, 384), 1506, 1889);
+		m_enemies.push_back(enemy3);
+		Enemy* enemy4 = new Enemy("Resources/Sprites/CastleGoomba.png", sf::Vector2f(1307, 224), 1122, 1472);
+		m_enemies.push_back(enemy4);
+		Enemy* enemy5 = new Enemy("Resources/Sprites/CastleGoomba.png", sf::Vector2f(2080, 256), 2014, 2145);
+		m_enemies.push_back(enemy5);
+		Enemy* enemy6 = new Enemy("Resources/Sprites/CastleGoomba.png", sf::Vector2f(2530, 256), 2400, 2685);
+		m_enemies.push_back(enemy6);
+		Enemy* enemy7 = new Enemy("Resources/Sprites/CastleGoomba.png", sf::Vector2f(2880, 384), 2750, 3008);
+		m_enemies.push_back(enemy7);
+		Enemy* enemy8 = new Enemy("Resources/Sprites/CastleGoomba.png", sf::Vector2f(3379, 256), 3294, 3454);
+		m_enemies.push_back(enemy8);
+	}
+	if (m_currentWorld == 2 && m_currentZone == 1)
+	{
+		Enemy* enemy = new Enemy("Resources/Sprites/OverworldGoomba.png", sf::Vector2f(511, 384), 416, 704);
+		m_enemies.push_back(enemy);
+		Enemy* enemy2 = new Enemy("Resources/Sprites/OverworldGoomba.png", sf::Vector2f(611, 384), 416, 704);
+		m_enemies.push_back(enemy2);
+		Enemy* enemy3 = new Enemy("Resources/Sprites/OverworldGoomba.png", sf::Vector2f(860, 384), 800, 1072);
+		m_enemies.push_back(enemy3);
+		Enemy* enemy4 = new Enemy("Resources/Sprites/OverworldGoomba.png", sf::Vector2f(920, 384), 800, 1072);
+		m_enemies.push_back(enemy4);	
+		Enemy* enemy5 = new Enemy("Resources/Sprites/OverworldGoomba.png", sf::Vector2f(1283, 384), 1168, 1418);
+		m_enemies.push_back(enemy5);
+		Enemy* enemy6 = new Enemy("Resources/Sprites/OverworldGoomba.png", sf::Vector2f(1358, 384), 1168, 1418);
+		m_enemies.push_back(enemy6);
+		Enemy* enemy7= new Enemy("Resources/Sprites/OverworldGoomba.png", sf::Vector2f(1733, 384), 1633, 1975);
+		m_enemies.push_back(enemy7);
+		Enemy* enemy8 = new Enemy("Resources/Sprites/OverworldGoomba.png", sf::Vector2f(1803, 384), 1633, 1975);
+		m_enemies.push_back(enemy8);
+		Enemy* enemy9 = new Enemy("Resources/Sprites/OverworldGoomba.png", sf::Vector2f(1868, 384), 1633, 1975);
+		m_enemies.push_back(enemy9);
+		Enemy* enemy10 = new Enemy("Resources/Sprites/OverworldGoomba.png", sf::Vector2f(2250, 384), 2140, 2535);
+		m_enemies.push_back(enemy10);
+		Enemy* enemy11 = new Enemy("Resources/Sprites/OverworldGoomba.png", sf::Vector2f(2335, 384), 2140, 2535);
+		m_enemies.push_back(enemy11);
+		Enemy* enemy12 = new Enemy("Resources/Sprites/OverworldGoomba.png", sf::Vector2f(2415, 384), 2140, 2535);
+		m_enemies.push_back(enemy12);
+		Enemy* enemy13 = new Enemy("Resources/Sprites/OverworldGoomba.png", sf::Vector2f(4202, 384), 4067, 4315);
+		m_enemies.push_back(enemy13);
+
+		Pipe* pipe1 = new Pipe("Resources/Sprites/LevelPipe.png", sf::Vector2f(1120, 336), sf::Vector2f(64, 128));
+		m_pipes.push_back(pipe1);
+		Pipe* pipe2 = new Pipe("Resources/Sprites/LevelPipe.png", sf::Vector2f(2023, 336), sf::Vector2f(64, 128));
+		m_pipes.push_back(pipe2);
+		Pipe* pipe3 = new Pipe("Resources/Sprites/LevelPipe.png", sf::Vector2f(3070, 336), sf::Vector2f(64, 128));
+		m_pipes.push_back(pipe3);
+		Pipe* pipe4 = new Pipe("Resources/Sprites/LevelPipe.png", sf::Vector2f(3393, 370), sf::Vector2f(64, 64));
+		m_pipes.push_back(pipe4);
+		Pipe* pipe5 = new Pipe("Resources/Sprites/LevelPipe.png", sf::Vector2f(3532, 336), sf::Vector2f(64, 128));
+		m_pipes.push_back(pipe5);
+		Pipe* pipe6 = new Pipe("Resources/Sprites/LevelPipe.png", sf::Vector2f(3672, 352), sf::Vector2f(64, 96));
+		m_pipes.push_back(pipe6);
+		Pipe* pipe7 = new Pipe("Resources/Sprites/LevelPipe.png", sf::Vector2f(3807, 336), sf::Vector2f(64, 128));
+		m_pipes.push_back(pipe7);
+	}
+
+	if (m_currentWorld == 2 && m_currentZone == 2)
+	{
+		Enemy* enemy = new Enemy("Resources/Sprites/OverworldGoomba.png", sf::Vector2f(572, 160), 482, 672);
+		m_enemies.push_back(enemy);
+		Enemy* enemy2 = new Enemy("Resources/Sprites/OverworldGoomba.png", sf::Vector2f(1417, 128), 1317, 1507);
+		m_enemies.push_back(enemy2);
+		Enemy* enemy3 = new Enemy("Resources/Sprites/OverworldGoomba.png", sf::Vector2f(1512, 256), 1317, 1697);
+		m_enemies.push_back(enemy3);
+		Enemy* enemy4 = new Enemy("Resources/Sprites/OverworldGoomba.png", sf::Vector2f(2306, 384), 2141, 2456);
+		m_enemies.push_back(enemy4);
+		Enemy* enemy5 = new Enemy("Resources/Sprites/OverworldGoomba.png", sf::Vector2f(3518, 256), 3462, 3586);
+		m_enemies.push_back(enemy5);
+		Enemy* enemy6 = new Enemy("Resources/Sprites/OverworldGoomba.png", sf::Vector2f(3983, 256), 3873, 4223);
+		m_enemies.push_back(enemy6);
+		Enemy* enemy7 = new Enemy("Resources/Sprites/OverworldGoomba.png", sf::Vector2f(4103, 256), 3873, 4223);
+		m_enemies.push_back(enemy7);
+
+		MovingPlatform* movingPlatform1 = new MovingPlatform(sf::Vector2f(1898, 105), 100, 400);
+		m_movingPlatforms.push_back(movingPlatform1);
+		MovingPlatform* movingPlatform2 = new MovingPlatform(sf::Vector2f(2936, 105), 100, 400);
+		m_movingPlatforms.push_back(movingPlatform2);
+		MovingPlatform* movingPlatform3 = new MovingPlatform(sf::Vector2f(3272, 105), 100, 400);
+		m_movingPlatforms.push_back(movingPlatform3);
+	}
+	if (m_currentWorld == 2 && m_currentZone == 3)
+	{
+		Enemy* enemy = new Enemy("Resources/Sprites/CastleGoomba.png", sf::Vector2f(640, 256), 480, 929);
+		m_enemies.push_back(enemy);
+		Enemy* enemy2 = new Enemy("Resources/Sprites/CastleGoomba.png", sf::Vector2f(730, 256), 480, 920);
+		m_enemies.push_back(enemy2);
+		Enemy* enemy3 = new Enemy("Resources/Sprites/CastleGoomba.png", sf::Vector2f(1345, 224), 1250, 1505);
+		m_enemies.push_back(enemy3);
+		Enemy* enemy4 = new Enemy("Resources/Sprites/CastleGoomba.png", sf::Vector2f(1730, 224), 1600, 1890);
+		m_enemies.push_back(enemy4);
+		Enemy* enemy5 = new Enemy("Resources/Sprites/CastleGoomba.png", sf::Vector2f(2175, 224), 2020, 2370);
+		m_enemies.push_back(enemy5);
+		Enemy* enemy6 = new Enemy("Resources/Sprites/CastleGoomba.png", sf::Vector2f(2756, 256), 2656, 2880);
+		m_enemies.push_back(enemy6);
+		Enemy* enemy7 = new Enemy("Resources/Sprites/CastleGoomba.png", sf::Vector2f(3024, 256), 2944, 3104);
+		m_enemies.push_back(enemy7);
+		Enemy* enemy8 = new Enemy("Resources/Sprites/CastleGoomba.png", sf::Vector2f(3293, 256), 3168, 3423);
+		m_enemies.push_back(enemy8);
+		Enemy* enemy9 = new Enemy("Resources/Sprites/CastleGoomba.png", sf::Vector2f(3551, 384), 3456, 3621);
+		m_enemies.push_back(enemy9);
+		Enemy* enemy10 = new Enemy("Resources/Sprites/CastleGoomba.png", sf::Vector2f(3766, 384), 3671, 3872);
+		m_enemies.push_back(enemy10);
+		Enemy* enemy11 = new Enemy("Resources/Sprites/CastleGoomba.png", sf::Vector2f(4146, 384), 4096, 4192);
+		m_enemies.push_back(enemy11);
+	}
+
 }

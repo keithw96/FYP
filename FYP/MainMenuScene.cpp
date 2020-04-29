@@ -70,7 +70,7 @@ void MainMenuScene::update(GameStates& gameState, sf::RenderWindow& window, Play
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
 			play->init();
-			gameState = GameStates::LevelOne;
+			gameState = GameStates::Play;
 		}
 	}
 	else

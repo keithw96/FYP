@@ -3,5 +3,5 @@
 enum class GameStates
 {
 	MainMenu,
-	LevelOne
+	Play
 };

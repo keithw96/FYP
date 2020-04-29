@@ -45,7 +45,7 @@ void Game::pollEvent()
 		case GameStates::MainMenu:
 			m_mainMenuScene->pollEvent(event, m_window, m_currentGameState, m_playScene);
 			break;
-		case GameStates::LevelOne:
+		case GameStates::Play:
 			m_playScene->pollEvent(event, m_window, m_currentGameState);
 			break;
 	
@@ -75,7 +75,7 @@ void Game::update()
 		case GameStates::MainMenu:
 			m_mainMenuScene->update(m_currentGameState, m_window, m_playScene);
 			break;
-		case GameStates::LevelOne:
+		case GameStates::Play:
 			m_playScene->update(deltaTime, m_currentGameState, m_window);
 			break;
 		default:
@@ -98,7 +98,7 @@ void Game::draw()
 	case GameStates::MainMenu:
 		m_mainMenuScene->render(m_window);
 		break;
-	case GameStates::LevelOne:
+	case GameStates::Play:
 		m_playScene->render(m_window);
 		break;
 	default:
