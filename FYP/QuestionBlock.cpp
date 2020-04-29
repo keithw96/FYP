@@ -22,19 +22,7 @@ QuestionBlock::QuestionBlock(std::string filePath, std::string spentPath, sf::Ve
 	m_shape.setPosition(sf::Vector2f(pos));
 	m_shape.setOrigin(m_shape.getSize() / 2.0f);
 
-	int random = rand() % 100;
-
 	m_spent = false;
-
-	if (random < 95)
-	{
-		m_hasCoin = true;
-	}
-	else
-	{
-		m_hasCoin = false;
-	}
-
 }
 
 /// <summary>
@@ -87,15 +75,6 @@ sf::Vector2f QuestionBlock::getHalfSize()
 sf::Vector2f QuestionBlock::getPos()
 {
 	return m_shape.getPosition();
-}
-
-/// <summary>
-/// Returns the m_hasCoin boolean
-/// </summary>
-/// <returns></returns>
-bool QuestionBlock::getHasCoin()
-{
-	return m_hasCoin;
 }
 
 /// <summary>

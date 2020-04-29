@@ -11,6 +11,7 @@ Tile::Tile(std::string filePath, sf::Vector2f pos)
 	{
 		std::cout << "Failed to load " << filePath << std::endl;
 	}
+	m_texture.setSmooth(true);
 	m_shape.setTexture(&m_texture);
 	m_shape.setSize(sf::Vector2f(32,32));
 	m_shape.setPosition(sf::Vector2f(pos));

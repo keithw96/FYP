@@ -22,33 +22,33 @@ Player::~Player()
 /// <param name="pos"></param>
 void Player::init(sf::Vector2f pos)
 {
-	if (!m_texture.loadFromFile("./Resources/Sprites/MarioSpriteSheet1.png"))
+	if (!m_texture.loadFromFile("Resources/Sprites/MarioSpriteSheet1.png"))
 	{
 		std::cout << "Failed to load player sprite" << std::endl;
 	}
 
-	if (!m_jumpBuffer.loadFromFile("./Resources/Sounds/Jump.wav"))
+	if (!m_jumpBuffer.loadFromFile("Resources/Sounds/Jump.wav"))
 	{
 		std::cout << "Error Loading Jump Sound" << std::endl;
 	}
 	m_jumpSound.setBuffer(m_jumpBuffer);
 	m_jumpSound.setVolume(30.0f);
 
-	if (!m_coinBuffer.loadFromFile("./Resources/Sounds/Coin.wav"))
+	if (!m_coinBuffer.loadFromFile("Resources/Sounds/Coin.wav"))
 	{
 		std::cout << "Error Loading Jump Sound" << std::endl;
 	}
 	m_coinSound.setBuffer(m_coinBuffer);
 	m_coinSound.setVolume(30.0f);
 
-	if (!m_stompBuffer.loadFromFile("./Resources/Sounds/StompEnemy.wav"))
+	if (!m_stompBuffer.loadFromFile("Resources/Sounds/StompEnemy.wav"))
 	{
 		std::cout << "Error Loading stomp sound" << std::endl;
 	}
 	m_stompSound.setBuffer(m_stompBuffer);
 	
 
-	if (!m_1upBuffer.loadFromFile("./Resources/Sounds/1Up.wav"))
+	if (!m_1upBuffer.loadFromFile("Resources/Sounds/1Up.wav"))
 	{
 		std::cout << "Error Loading 1up sound" << std::endl;
 	}
@@ -129,7 +129,7 @@ void Player::update(float dt, std::vector<Tile*> platforms, std::vector<Coin*> c
 		m_shape.move(m_velocity);
 		questionBlockCollision(questionBlocks, score, coinCount, livesCount, renderRectangle);
 		PlatformCollision(platforms, renderRectangle);
-		coinCollision(coins, score, coinCount);
+		coinCollision(coins, score, coinCount, livesCount);
 		enemyCollision(enemies, score, renderRectangle);
 		pipeCollision(pipes, renderRectangle);
 		movingPlatformCollision(movingPlatforms, renderRectangle);
@@ -225,15 +225,25 @@ void Player::PlatformCollision(std::vector<Tile*> tiles, sf::RectangleShape& ren
 /// Check for collision on coins and destroy them
 /// </summary>
 /// <param name="coins"></param>
-void Player::coinCollision(std::vector<Coin*> coins, int &score, int& coinCount)
+void Player::coinCollision(std::vector<Coin*> coins, int &score, int& coinCount, int& livesCount)
 {
 	for (auto c : coins)
 	{
 		if (m_shape.getGlobalBounds().intersects(c->getShape().getGlobalBounds()) && c->getAlive())
 		{
+			if (coinCount >= 50)
+			{
+				coinCount -= 50;
+				m_1upSound.play();
+				livesCount++;
+			}
+			else
+			{
+				m_coinSound.play();
+			}
+
 			score += 200;
 			coinCount += 1;
-			m_coinSound.play();
 			c->kill();
 		}
 	}
@@ -451,19 +461,22 @@ void Player::questionBlockCollision(std::vector<QuestionBlock*> questionBlocks, 
 					}
 					else
 					{
-						if (!q->getSpent() && q->getHasCoin())
+						if (!q->getSpent())
 						{
 							coinCount++;
 							score += 200;
-							m_coinSound.play();
-						}
-						else if (!q->getSpent() && !q->getHasCoin())
-						{
-							m_1upSound.play();
-							livesCount++;
+							if (coinCount >= 50)
+							{
+								coinCount -= 50;
+								m_1upSound.play();
+								livesCount++;
+							}
+							else
+							{
+								m_coinSound.play();
+							}
 						}
 						q->hit();
-
 						m_shape.move(0.0f, -interSectY);
 					}
 				}

@@ -8,7 +8,7 @@
 /// <param name="bottomHeight"></param>
 MovingPlatform::MovingPlatform(sf::Vector2f pos, int topHeight, int bottomHeight)
 {
-	if(!m_texture.loadFromFile("./Resources/Sprites/MovingPlatform.png"))
+	if(!m_texture.loadFromFile("Resources/Sprites/MovingPlatform.png"))
 	{
 		std::cout << "Failed to load player sprite" << std::endl;
 	}

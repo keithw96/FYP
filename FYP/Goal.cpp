@@ -8,7 +8,6 @@
 /// <param name="position"></param>
 Goal::Goal(std::string filepath, sf::Vector2f size, sf::Vector2f position)
 {
-	//if (!m_texture.loadFromFile("./Resources/Sprites/Flag.png"))
 	if (!m_texture.loadFromFile(filepath))
 	{
 		std::cout << "Failed to load Flag Texture" << std::endl;

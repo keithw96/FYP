@@ -14,14 +14,12 @@ public:
 	sf::RectangleShape getShape();
 	sf::Vector2f getHalfSize();
 	sf::Vector2f getPos();
-	bool getHasCoin();
 	bool getSpent();
 private:
 
 	sf::RectangleShape m_shape;
 	sf::Texture m_texture;
 	sf::Texture m_spentTexture;
-	bool m_hasCoin;
 	bool m_spent;
 };
 

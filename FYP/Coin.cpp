@@ -6,7 +6,7 @@
 /// <param name="position"></param>
 Coin::Coin(sf::Vector2f position)
 {
-	m_texture.loadFromFile("./Resources/Sprites/MarioCoin.png");
+	m_texture.loadFromFile("Resources/Sprites/MarioCoin.png");
 
 	m_shape.setPosition(position);
 	m_shape.setSize(sf::Vector2f(32, 32));

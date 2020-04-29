@@ -46,7 +46,7 @@ void Game::pollEvent()
 			m_mainMenuScene->pollEvent(event, m_window, m_currentGameState, m_playScene);
 			break;
 		case GameStates::LevelOne:
-			m_playScene->pollEvent(event, m_window);
+			m_playScene->pollEvent(event, m_window, m_currentGameState);
 			break;
 	
 		default:

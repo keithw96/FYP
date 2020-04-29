@@ -1,90 +1,80 @@
 ﻿  Play.cpp
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(141,89): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(146,87): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(141,81): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(146,79): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(146,91): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(151,89): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(146,83): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(151,81): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(151,102): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(156,100): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(151,94): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(156,92): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(156,97): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(161,95): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(156,89): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(161,87): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(161,175): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(166,171): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(161,167): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(166,163): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(168,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(173,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(168,43): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(173,43): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(172,108): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(177,106): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(172,100): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(177,98): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(177,179): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(182,175): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(177,171): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(183,107): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(183,99): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(182,167): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
@@ -99,276 +89,284 @@ C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(188,97): warning C42
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(193,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(193,103): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(193,43): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(193,95): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(198,95): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(198,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(198,87): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(198,43): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(208,49): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(203,93): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(208,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(203,85): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(214,90): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(213,49): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(214,82): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(213,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(219,93): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(219,88): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(219,85): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(219,80): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(224,95): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(224,91): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(224,87): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(224,83): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(229,99): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(229,93): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(229,91): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(229,85): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(239,49): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(234,97): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(239,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(234,89): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(240,91): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(240,54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(250,49): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(244,49): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(250,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(244,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(251,91): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(251,54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(257,102): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(245,91): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(245,54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(255,49): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(257,94): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(255,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(261,109): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(256,91): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(256,54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(262,100): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(261,97): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(262,92): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(270,49): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(266,107): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(270,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(266,95): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(271,91): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(271,54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(281,49): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(275,49): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(281,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(275,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(282,91): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(282,54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(292,49): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(276,91): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(276,54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(286,49): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(292,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(286,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(293,91): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(293,54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(343,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(287,91): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(287,54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(297,49): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(343,43): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(297,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(347,107): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(298,91): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(298,54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(347,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(347,99): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(347,43): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(352,105): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(351,105): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(352,97): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(351,97): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(357,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(356,103): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(357,43): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(356,95): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(362,95): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(361,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(362,87): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(361,43): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(367,109): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(366,93): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(367,97): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(366,85): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(419,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(431,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(566,110): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(371,107): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(566,59): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(371,95): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(570,111): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(427,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(439,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(619,110): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(570,59): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(619,59): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(574,110): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(623,111): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(574,58): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(623,59): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(577,114): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(627,110): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(577,62): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(627,58): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(583,105): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(630,114): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(583,54): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(630,62): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(642,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(649,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(656,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(662,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(669,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(676,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(683,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(691,20): warning C4018: '<': signed/unsigned mismatch
-  Player.cpp
-  Generating Code...
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(636,105): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(636,54): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(695,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(702,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(709,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(715,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(722,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(729,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(736,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\FYP\Play.cpp(744,20): warning C4018: '<': signed/unsigned mismatch
   FYP.vcxproj -> C:\Users\oakda\OneDrive\Desktop\FYP - Copy\FYP\Debug\FYP.exe

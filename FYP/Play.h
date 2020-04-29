@@ -13,6 +13,14 @@
 #include "Tile.h"
 #include "MovingPlatform.h"
 #include "QuestionBlock.h"
+
+enum class PlayState
+{
+	GAME,
+	LOADING,
+	GAMEOVER
+};
+
 class Play
 {
 public:
@@ -25,13 +33,15 @@ public:
 	void initLevel();
 	void initNonTileMapEntities();
 	void initBonusArea(int lvNum);
-	void pollEvent(sf::Event& event, sf::RenderWindow& window);
+	void pollEvent(sf::Event& event, sf::RenderWindow& window, GameStates& m_currentGamestate);
 	void update(float dt, GameStates& gameState, sf::RenderWindow& window);
 	void render(sf::RenderWindow& window);
 	void setView(sf::RenderWindow &window);
 	void loadNextLevel();
 	void killEverything();
 private:
+
+	PlayState m_currentPlayState;
 
 	int m_currentWorld;
 	int m_currentZone;
@@ -58,6 +68,8 @@ private:
 	sf::Text m_worldTxt;
 	sf::Text m_timeTxt;
 	sf::Text m_livesTxt;
+	sf::Text m_gameOver;
+
 	sf::Sprite m_livesSprite;
 	sf::Texture m_livesTexture;
 

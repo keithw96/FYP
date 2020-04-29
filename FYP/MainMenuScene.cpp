@@ -5,19 +5,19 @@
 /// </summary>
 MainMenuScene::MainMenuScene()
 {
-	if (!m_backgroundTexture.loadFromFile("./Resources/Sprites/MainMenuBackground.png"))
+	if (!m_backgroundTexture.loadFromFile("Resources/Sprites/MainMenuBackground.png"))
 	{
 		std::cout << "Failed to load main menu background texture";
 	}
 
-	if (!m_playBtnTexture.loadFromFile("./Resources/Sprites/PlayBtn.png"))
+	if (!m_playBtnTexture.loadFromFile("Resources/Sprites/PlayBtn.png"))
 	{
 		std::cout << "Failed to load play btn texture";
 	}
 	m_playBtn.setTexture(m_playBtnTexture);
 	m_playBtn.setPosition(sf::Vector2f(750,650));
 
-	if (!m_playBtnSelectedTexture.loadFromFile("./Resources/Sprites/PlayBtnSelected.png"))
+	if (!m_playBtnSelectedTexture.loadFromFile("Resources/Sprites/PlayBtnSelected.png"))
 	{
 		std::cout << "Failed to load play btn selected texture";
 	}

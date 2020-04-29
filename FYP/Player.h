@@ -25,7 +25,7 @@ public:
 	void draw(sf::RenderWindow& window);
 	
 	void PlatformCollision(std::vector<Tile*> platforms, sf::RectangleShape& renderRectangle);
-	void coinCollision(std::vector<Coin*> coins, int& score, int& coinCount);
+	void coinCollision(std::vector<Coin*> coins, int& score, int& coinCount, int& livesCount);
 	void enemyCollision(std::vector<Enemy*> enemies, int& score, sf::RectangleShape& renderRectangle);
 	void pipeCollision(std::vector<Pipe*> pipes, sf::RectangleShape& renderRectangle);
 	void movingPlatformCollision(std::vector<MovingPlatform*> movingPlatforms, sf::RectangleShape& renderRectangle);
